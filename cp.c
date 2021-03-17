@@ -11,8 +11,8 @@ int main(int argc, char* argv[])
                       exit(1);
         }
         
-        int e = link(argv[1], argv[2]);
-        if (e=-1) {
+        e = link(argv[1], argv[2]);
+        if (e==-1) {
           write(2, "ERROR copy\n", 11);
         }
 }
