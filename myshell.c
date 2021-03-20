@@ -1,6 +1,7 @@
 // myShell0
 //////////////////////////////////////////////////
 
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -65,17 +66,27 @@ int read_args(int* argcp, char* args[], int max, int* eofp)
 int execute(int argc, char *argv[])
 {
     int status;
-    if(strcmp(argv[0], "stee")==0){
-        write(0, "dentro del if 1", 40);
-        int process = fork();
-        if(process==0){
-            write(0,"child", strlen("child"));
-            execvp("./stee", argv);
-            write(0, "acabado", 40);
-        } else if(process<0){
+    //signal(2, SIG_IGN);
+    if (strcmp(argv[0],"cd")==0){
+        //int proccess = fork();
+        //if(proccess==0){
+        //system("cd commands");
+        //execvp(argv[0], argv);
+        //execl("/bin/sh", "cd", argv[1]);
+    //} else if (proccess > 0)
+        // wait(&status);
+    } else {
+        char command[100] = "./commands/";
+        int proccess = fork();
+        if(proccess==0){
+           strcat(command,argv[0]);
+           if(execvp(command, argv)<0){
+           write(2, "Unknown command\n", strlen("Unknown command\n"));
+           exit(1);
+         //  signal(2, SIG_DFL);
+           }
+        } else if (proccess > 0)
             wait(&status);
-            write(0, "parent", strlen("parent"));
-        }
     }
 }
 
@@ -90,7 +101,9 @@ main ()
    while (1) {
       write(0,Prompt, strlen(Prompt));
       if (read_args(&argc, args, MAXARGS, &eof) && argc > 0) {
+         signal(2,SIG_IGN);
          execute(argc, args);
+         signal(2,SIG_DFL);
       }
       if (eof) exit(0);
    }
