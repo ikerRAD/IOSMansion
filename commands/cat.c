@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
    signal(2, SIG_DFL);
    //In case that the user doesn't give an file name to read argc is going to be 1	
    if(argc == 1){
-      //Whatever is write in the standar input is going to be print in the standar output
+      //Whatever is written in the standar input is going to be print in the standar output
       while (state = read(0, &c, 1) > 0) {
          write(1, &c, 1);
       } 
@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
          write(2, "ERROR open\n", 11);
          exit(1);
       }
-      //The file will be print completely in the standar output
+      //The file will be printed completely in the standar output
       if(length=read(fd,&c, 1)>0){
          while (length > 0) {
             write(1,&c, length);
