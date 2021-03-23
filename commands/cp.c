@@ -6,11 +6,12 @@ int main(int argc, char* argv[])
 {
         int e;
         
+        //To ensure that the command follows the cp structure.
         if (argc !=3)  {
                 write(2, "Usage: cp file_name copy_name\n", 24);
                       exit(1);
         }
-        
+        //Copy the file.
         e = link(argv[1], argv[2]);
         if (e==-1) {
           write(2, "ERROR copy\n", 11);
