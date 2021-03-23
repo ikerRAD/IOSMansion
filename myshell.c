@@ -7,10 +7,12 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
+#include <unistd.h>
 
 #define error(a) {perror(a); exit(1);};
 #define MAXLINE 200
 #define MAXARGS 20
+#define PATH_MAX 200
 
 /////////// reading commands:
 
@@ -63,11 +65,13 @@ int read_args(int* argcp, char* args[], int max, int* eofp)
 
 ///////////////////////////////////////
 
-int execute(int argc, char *argv[])
+int execute(int argc, char *argv[], char *cwd)
 {
     int status;
-    //signal(2, SIG_IGN);
     if (strcmp(argv[0],"cd")==0){
+        char path[10] = "./";
+        strcat(path, argv[1]);
+        chdir(path);
         //int proccess = fork();
         //if(proccess==0){
         //system("cd commands");
@@ -76,14 +80,14 @@ int execute(int argc, char *argv[])
     //} else if (proccess > 0)
         // wait(&status);
     } else {
-        char command[100] = "./commands/";
+        //char command[200] = cwd ;
         int proccess = fork();
         if(proccess==0){
-           strcat(command,argv[0]);
-           if(execvp(command, argv)<0){
+	   strcat(cwd,"/commands/");
+	   strcat(cwd, argv[0]);
+           if(execvp(cwd, argv)<0){
            write(2, "Unknown command\n", strlen("Unknown command\n"));
            exit(1);
-         //  signal(2, SIG_DFL);
            }
         } else if (proccess > 0)
             wait(&status);
@@ -97,12 +101,13 @@ main ()
    int eof= 0;
    int argc;
    char *args[MAXARGS];
-
+   char *cwd[PATH_MAX];
+   getcwd(cwd, sizeof(cwd));
    while (1) {
       write(0,Prompt, strlen(Prompt));
       if (read_args(&argc, args, MAXARGS, &eof) && argc > 0) {
          signal(2,SIG_IGN);
-         execute(argc, args);
+         execute(argc, args, cwd);
          signal(2,SIG_DFL);
       }
       if (eof) exit(0);
