@@ -72,15 +72,7 @@ int execute(int argc, char *argv[], char *cwd)
         char path[10] = "./";
         strcat(path, argv[1]);
         chdir(path);
-        //int proccess = fork();
-        //if(proccess==0){
-        //system("cd commands");
-        //execvp(argv[0], argv);
-        //execl("/bin/sh", "cd", argv[1]);
-    //} else if (proccess > 0)
-        // wait(&status);
     } else {
-        //char command[200] = cwd ;
         int proccess = fork();
         if(proccess==0){
 	   strcat(cwd,"/commands/");
