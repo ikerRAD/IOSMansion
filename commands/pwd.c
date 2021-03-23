@@ -7,11 +7,12 @@ int main(int argc, char* argv[])
    int fd;
    char c;
    int length;
-
+   //fd will be -1 if the .description file doesn't exist
    if ((fd = open(".description", O_RDONLY)) == -1) {
       write(2, "ERROR open\n", 11);
       exit(1);
    }
+   //print .descrption file at the standar output
    while (length=read(fd, &c, 1) > 0) {
       write(1,&c, length);
    }
