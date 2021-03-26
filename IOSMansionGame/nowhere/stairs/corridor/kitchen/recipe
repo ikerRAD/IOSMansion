@@ -1,1 +1,13 @@
-recipe to be written
+COOKIES RECIPE
+
+You must move this ingredients to the oven.
+- 
+
+
+
+To do so, you have to use a new command, mv:
+This command needs the name of the file you want to move
+and the destination directory as parameters:
+mv [filename] [dest-dir]
+
+
