@@ -1,13 +1,22 @@
 COOKIES RECIPE
 
 You must move this ingredients to the oven.
-- 
-
-
+- bakingPowder
+- cornFlour
+- eggs
+- milk
+- recipe
+- salt
+-sugar
 
 To do so, you have to use a new command, mv:
 This command needs the name of the file you want to move
 and the destination directory as parameters:
 mv [filename] [dest-dir]
+
+When all these ingredients are in the oven, use the magical word cook
+to obtain the piece of password!
+
+//hacer comando cook con pipes de lo que esta escrito en los archivos
 
 
