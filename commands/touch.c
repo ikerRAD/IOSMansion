@@ -20,9 +20,6 @@ int main(int argc, char* argv[])
                                case ENOENT:
                                         write(2, "Some directories in the path don't exist\n",strlen("Some directories in the path don't exist\n"));      
                                         break;
-                                case EDQUOT:
-                                        write(2, "You can't create the file, you have reached your quota of created files\n", strlen("You can't create the file, you have reached your quota of created files\n"));
-                                        break;
                                 case EINVAL:
                                         write(2, "Some characters in the file name are illegal\n", strlen("Some characters in the file name are illegal\n"));
                                         break;
