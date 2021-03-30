@@ -77,10 +77,10 @@ int execute(int argc, char *argv[], char *cwd)
         if(proccess==0){
 	   strcat(cwd,"/commands/");
 	   strcat(cwd, argv[0]);
-	   if(system("grep -c pwd .help")==0){
-           	write(2, "You can't use that command now\n", strlen("You can't use that command now\n"));
-		exit(1);
-	   }
+	   //if(system("grep -c pwd .help")==0){
+           //	write(2, "You can't use that command now\n", strlen("You can't use that command now\n"));
+	//	exit(1);
+	  // }
            if(execvp(cwd, argv)<0){
            write(2, "Unknown command\n", strlen("Unknown command\n"));
            exit(1);
