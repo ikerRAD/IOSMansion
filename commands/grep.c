@@ -39,6 +39,9 @@ int grep(char *argv[], int c)
 }
 
 int main(int argc,char *argv[]){
+	if (argc!=3) {
+		write(2, "Usage: grep string_to_find file_name\n", strlen("Usage: grep string_to_find file_name\n"));
+	}
 	if(grep(argv, 1)>0){
 		write(1,"The word appears", strlen("The word appears"));
 	}
