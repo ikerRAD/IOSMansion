@@ -5,7 +5,7 @@
 int grep(char *argv[], int c)
 {
     int fd,r,j=0, count=0;
-    char temp,line[10000000];
+    char temp,line[1000000];
     memset(line, 0, sizeof(line));
     if((fd=open(argv[2],O_RDONLY)) != -1)
     {
