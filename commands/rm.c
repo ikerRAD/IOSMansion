@@ -27,16 +27,23 @@ int main(int argc, char* argv[])
                                         write(2, &argv[i], sizeof(argv[i]));
                                         write(2, "\n", strlen("\n"));
                                         break;
-                                case EBUSY:
-                                        write(2, "The file ", strlen("The file "));
-                                        write(2, &argv[i], sizeof(argv[i]));
-                                        write(2, " can't be deleted because it is being used by another process\n", strlen(" can't be deleted because it is being used by another process\n"));
-                                        break;
                                 case EISDIR:
                                         write(2, &argv[i], sizeof(argv[i]));
                                         write(2, " is a directory, can't be deleted\n", strlen(" is a directory, can't be deleted\n"));
                                         break;
-                                       
+                                case ENOENT:
+                                        write(2, "Some directories in the path: ",strlen("Some directories in the path: "));      
+                                        write(2, &argv[i], sizeof(argv[i]));
+                                        write(2, " don't exist\n",strlen(" don't exist\n")); 
+                                        break;
+                                case ENOTDIR:
+                                        write(2, "A component of the path: ", strlen("A component of the path: "));
+                                        write(2, &argv[i], sizeof(argv[i]));
+                                        write(2, " isn't a directory\n",strlen(" isn't a directory\n")); 
+                                        break;
+                               default:
+                                        write(2, "An error has occurred with the unlink system call\n", strlen("An error has occurred with the unlink system call\n"));
+                                        break;       
                                         
                                
                         }
