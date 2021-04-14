@@ -15,7 +15,7 @@ void _ls(const char *dir, int l){
         char *per;
 	//See if the directory exists
         if(!directorio){
-                write(2, "ERROR open\n", 11);
+                write(2, "An error has occurred when opening the current directory\n", strlen("An error has occurred when opening the current directory\n"));
                 exit(1);
         }
 	  //Print at the standar output the entries from the directory that doesn't start with a dot.
@@ -25,7 +25,7 @@ void _ls(const char *dir, int l){
 	      str = d->d_name;
 	    if(l==1){
     		if(stat(str, &fileStat) < 0){
-			write(2, "An error occurred\n", strlen("An error occurred\n"));
+			write(2, "An error occurred when searching for permissions\n", strlen("An error occurred when searching for permissions\n"));
 			exit(1);
 		}
 
