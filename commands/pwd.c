@@ -1,6 +1,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <string.h>
+#include <limits.h>
 
 int main(int argc, char* argv[])
 {
@@ -15,7 +17,9 @@ int main(int argc, char* argv[])
    }
    
    if (getcwd(cwd, sizeof(cwd)) != NULL) {
-       printf("Location: %s\n", cwd);
+       write(1,"Location: ", strlen("Location: "));
+	write(1, cwd, strlen(cwd));
+	write(1, "\n", strlen("\n"));
    } else {
        perror("getcwd() error");
        exit(1);
