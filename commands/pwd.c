@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
    }
    
    if (getcwd(cwd, sizeof(cwd)) != NULL) {
-	path = strstr(cwd, "/IOSMansion");
+	path = strstr(cwd, "/nowhere");
        write(1,"Location: ", strlen("Location: "));
 	write(1, path, strlen(path));
 	write(1, "\n", strlen("\n"));

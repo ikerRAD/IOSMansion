@@ -1,6 +1,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
 int main(int argc, char* argv[])
 {
@@ -14,12 +15,12 @@ int main(int argc, char* argv[])
         }
         //Copy the file.
       
-        char path[10] = "./";
-        strcat(path, argv[2]);
+        char* path=argv[2];
         strcat(path,"/");
         strcat(path,argv[1]);
         e = link(argv[1], path);
         if (e==-1) {
+	write(2, path, strlen(path));
           write(2, "ERROR copy\n", 11);
           exit(1);
         }
