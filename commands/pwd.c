@@ -10,6 +10,8 @@ int main(int argc, char* argv[])
    char c;
    int length;
    char cwd[PATH_MAX];
+   char *path;
+   
    //The command structure is incorret
    if (argc!=1) {
       write(2, "Usage: pwd\n", strlen("Usage: pwd\n"));
@@ -17,8 +19,9 @@ int main(int argc, char* argv[])
    }
    
    if (getcwd(cwd, sizeof(cwd)) != NULL) {
+	path = strstr(cwd, "/IOSMansion");
        write(1,"Location: ", strlen("Location: "));
-	write(1, cwd, strlen(cwd));
+	write(1, path, strlen(path));
 	write(1, "\n", strlen("\n"));
    } else {
        perror("getcwd() error");
