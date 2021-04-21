@@ -4,22 +4,26 @@ out of this place because I ran out of oxygen, so now I'm a ghost that will help
 
 Do you want to know where you are? Say "pwd".
 ->pwd
-As you can see "????" appeared. That´s where you are. Remember this magical word, which will reveal where your are each time you say it.
+Exactly, you are in a dark basement. Remember this magical word, which will reveal where you are each time you say it.
 Well, you have to get out of here quickly! You need to say something in order to escape. Another magical word!
-This one is ls, try it!
+This one is ls. It is like a scanner of the room, it lists you everything you are able to see, locations and objects. Try it!
 
 ->ls
-As you can see, the information is messy , and it´s not enough! Try to say "ls -l" to solve this problem.
+As you can see, the information is too brief and it´s not enough! Try to say "ls -l" to solve this problem.
 ->ls -l
-Much better! As you can observe, some strange letters have appeared. Those are file permissions, we have some rules in this house! apart from the
-permissions you should see a d in the leftmost part (sometimes), those d's mean that the name related to it is a new location. Can you see the key?
-Try to read it with "cat key" 
+Much better! As you can observe, some strange letters have appeared. Those are file permissions, we have some rules in this house! Apart from the
+permissions you should see a d in the leftmost part of some of the components, those d's mean that the name related to it is a new location. 
+If a name is missing that d, it means that it is an object. Can you see the key?
 
-But firstly I have to tell you that it will teach you how to get out using a new magical word, cd! C´mon, follow what it says. Every time you want to remember it say "cat Key".
+Try to read it with "cat key". It will show you everything inside an object, just like reading a book!
+
+But firstly I have to tell you that the key will teach you how to get out using a new magical word, cd! This enables you to move around. 
+If you say cd followed by a location that appears in the ls list, you will enter on it. If you say cd .., you will go back to the previous location.
+C´mon, follow what it says. Every time you want to remember it say "cat Key".
 
 ->cat key
 
 ->cd .. (nowhere)
-//cd//
+
 
 
