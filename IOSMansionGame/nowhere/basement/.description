@@ -11,15 +11,15 @@ This one is ls, try it!
 ->ls
 As you can see, the information is messy , and it´s not enough! Try to say "ls -l" to solve this problem.
 ->ls -l
-Much better! Can you see the key? Try to read it with "cat key" 
+Much better! As you can observe, some strange letters have appeared. Those are file permissions, we have some rules in this house! apart from the
+permissions you should see a d in the leftmost part (sometimes), those d's mean that the name related to it is a new location. Can you see the key?
+Try to read it with "cat key" 
+
+But firstly I have to tell you that it will teach you how to get out using a new magical word, cd! C´mon, follow what it says. Every time you want to remember it say "cat Key".
+
 ->cat key
-//cd//
-Fantastic! It is teaching you how to get out using a new magical word, cd! C´mon, follow what it says. Every time you whant to remember it say cat door.
+
 ->cd .. (nowhere)
-
-Hello again ! Do you know where you are? Remember the magical word!
--> pwd 
-Exactly, you are nowhere! When you need to pass from one room to another, you will appear here. In order to follow your escape adventure, keep saying the magical words!
+//cd//
 
 
-From now on, when you enter a room, TALK TO ME FIRST (using cat), I do not trust you...
