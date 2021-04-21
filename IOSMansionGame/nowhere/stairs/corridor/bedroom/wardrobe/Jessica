@@ -2,9 +2,21 @@ Well now you might be asking yourself why I told you to come here.
 Look at your clothes, they look like shit, I think I can even see some vomit.
 ---Jessica has a gag reflex---
 
-You MUST change your clothes, use the ones inside this wardrobe.
-Let your current clothes on here and then lock this wardrobe with a password
-to avoid another drunkie steal them in a crazy night as the one you had.
+You MUST change your clothes, wear the ones inside this wardrobe.
+To change your clothes, first you have to take off the dirty ones you have on.
+To do so, you must create a new object named dirtyclothes using a new magical word, touch.
+This magical word enables you to create objects and it works like this:
+touch name_of_object
 
-(to take off your clothes create a file named dirtyclothes and to put the
-new clothes on delete the file that represents those clothes)
+Once you are naked, you should put the newclothes on, unless you want to die of 
+hypothermia and stay here with me forever :)
+To wear them, removing them from the wardrobe will do the trick.
+I suppose that by now you will know what that means... A new magical word!
+In this case, the word you need to say to remove objects is rm, and it works similarly to touch.
+You just need to say rm followed by the name of the object you want to remove.
+
+Ah! Just in case that evil brain is planning to remove me... 
+I am a ghost, I decide when to appear, so you won't get rid of me unless you escape! Hahahahaha
+
+Once you have clean clothes on, lock this wardrobe with a password to avoid another 
+drunkie stealing your old clothes in a crazy night as the one you had.
