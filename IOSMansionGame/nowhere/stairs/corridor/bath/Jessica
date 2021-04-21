@@ -6,8 +6,13 @@ Well... How to say this...
 Your mouth smells like medicinal alcohol!
 You'd better brush your teeth, at least the ones that you have left.
 There you have an old toothbrush. It is so dirty, just like my ex.
+
 But you can use the command cp in order to create a brand new one just for you!
 This magical word enables you to copy objects, and it works like this:
-cp 
-You will also need toothpaste so create it with the magical powers of LINUX COMMANDS! <3
+cp original_object_name new_object_name
+
+You will also need toothpaste. Create it with a magical word I have already taught you!
+
+When you have done both things, brush your teeth by saying "brush".
+
 So... Come on, that smell won't disappear alone...
