@@ -7,5 +7,7 @@ OK, if you insist... I will help you.
 The password is written in one of the books like this: password :xxxxxxx.
 There is one magical word that will save you a lot of time, grep.
 It is kind of a little elf that reads the whole book quickly for you, searchs for the string you have specified and 
-if it finds it, it tells you the 
+if it finds it, it prints the whole line in which it has found it.
+The way of saying it is: grep string_to_be_found file_to_search
 
+So c'mon, let's start searching for the word "password" in these old dusty books!
