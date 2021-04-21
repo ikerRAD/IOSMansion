@@ -18,8 +18,8 @@ int grep(char *argv[], int c)
             {
                 line[j]=temp;
                 
-		        if(temp==argv[1][check]){
-			        check++;
+		if(temp==argv[1][check]){
+		    check++;
                     if(check==s){
                         mustPrint=1;
                         line[j-s+1]='[';
@@ -32,8 +32,11 @@ int grep(char *argv[], int c)
                         line[j]=']';
                     }
 			
-		        }else{
+		}else{
                     check=0;
+			 if(temp==argv[1][check]){
+			 	check++;
+			 }	
                 }
                 j++;
             }
