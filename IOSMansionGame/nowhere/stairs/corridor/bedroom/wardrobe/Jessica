@@ -4,11 +4,11 @@ Look at your clothes, they look like shit, I think I can even see some vomit.
 
 You MUST change your clothes, wear the ones inside this wardrobe.
 To change your clothes, first you have to take off the dirty ones you have on.
-To do so, you must create a new object named dirtyclothes using a new magical word, touch.
+To do so, you must create a new object named dirtyClothes using a new magical word, touch.
 This magical word enables you to create objects and it works like this:
 touch name_of_object
 
-Once you are naked, you should put the newclothes on, unless you want to die of 
+Once you are naked, you should put the cleanClothes on, unless you want to die of 
 hypothermia and stay here with me forever :)
 To wear them, removing them from the wardrobe will do the trick.
 I suppose that by now you will know what that means... A new magical word!
