@@ -4,5 +4,8 @@ The piece of password of this room is hidden in one of these books, but there ar
 Searching for it would take you years... And you need to escape as soon as possible!
 
 OK, if you insist... I will help you.
-The password is written in one of the books like this: password
+The password is written in one of the books like this: password :xxxxxxx.
+There is one magical word that will save you a lot of time, grep.
+It is kind of a little elf that reads the whole book quickly for you, searchs for the string you have specified and 
+if it finds it, it tells you the 
 
