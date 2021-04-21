@@ -1,6 +1,3 @@
 Hello again ! Do you know where you are? Remember the magical word!
--> pwd 
-Exactly, you are nowhere! When you need to pass from one room to another, you will appear here. In order to follow your escape adventure, keep saying the magical words!
 
-
-From now on, when you enter a room, TALK TO ME FIRST (using cat), I do not trust you...
+From now on, when you enter a room, scan it with ls and TALK TO ME BEFORE DOING ANYTHING ELSE (using cat), I do not trust you...
