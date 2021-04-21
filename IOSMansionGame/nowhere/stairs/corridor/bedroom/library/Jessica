@@ -10,4 +10,6 @@ It is kind of a little elf that reads the whole book quickly for you, searchs fo
 if it finds it, it prints the whole line in which it has found it.
 The way of saying it is: grep string_to_be_found file_to_search
 
+As soon as you find the password, you will be able to enter to the kitchen.
+
 So c'mon, let's start searching for the word "password" in these old dusty books!
