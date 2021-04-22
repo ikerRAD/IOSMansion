@@ -14,6 +14,19 @@ int main(int argc, char* argv[])
         //Copy the file.
         e = link(argv[1], argv[2]);
         if (e==-1) {
-          write(2, "ERROR copy\n", 11);
+                switch (errno) {
+                        case EEXIST:
+                             write(2, "There's already an object with that name in the location\n",strlen("There's already an object with that name in the location\n"));      
+                             break;         
+                        case ENOENT:
+                             write(2, "Some locations in the path don't exist\n",strlen("Some locations in the path don't exist\n"));      
+                             break;
+                        case ENOTDIR:
+                             write(2, "A component of the path isn't a location\n", strlen("A component of the file isn't a location\n"));
+                             break;
+                        default:
+                             write(2, "An error has occurred\n", strlen("An error has occurred\n"));
+                             break;
+                }
         }
 }
