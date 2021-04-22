@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-int grep(char *argv[], int c)
+int grep(char *argv[])
 {
     int fd,r,j=0, count=0;
     char temp,line[100000];
@@ -42,7 +42,6 @@ int grep(char *argv[], int c)
             }
             else
             {   
-                
                 if(mustPrint==1){
                     strcat(line, "\n");
                 	write(1, line, sizeof(line));
@@ -54,11 +53,14 @@ int grep(char *argv[], int c)
             }
 
         }
-    }
-   // if (c==1){
-   //    return c;
-   // } 
-   // return -1;           
+    } else {
+	    switch (errno) {
+		   	case ENOENT:
+			    	write(2, "That book doesn't exist\n", strlen("That book doesn't exist\n");
+				break;
+			default:
+				write(2, "An error has occurred\n", strlen("An error has occurred\n"));  
+				break;      
 }
 
 int main(int argc,char *argv[]){
@@ -66,8 +68,6 @@ int main(int argc,char *argv[]){
                 write(2, "Usage: grep string_to_find file_name\n", strlen("Usage: grep string_to_find"));
                 exit(1);
         }
-        if(grep(argv, 1)>0){
-                write(1,"The word appears", strlen("The word appears"));
-        }
+        grep(argv);
 }
 
