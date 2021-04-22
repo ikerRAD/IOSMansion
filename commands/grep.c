@@ -70,7 +70,7 @@ void grep(char *argv[])
 
 int main(int argc,char *argv[]){
         if (argc!=3) {
-                write(2, "Usage: grep string_to_find file_name\n", strlen("Usage: grep string_to_find"));
+                write(2, "Usage: grep string_to_find object_name\n", strlen("Usage: grep string_to_find object_name\n"));
                 exit(1);
         }
         grep(argv);
