@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
 int grep(char *argv[])
 {
     int fd,r,j=0, count=0;
@@ -60,7 +61,9 @@ int grep(char *argv[])
 				break;
 			default:
 				write(2, "An error has occurred\n", strlen("An error has occurred\n"));  
-				break;      
+				break;
+	    }
+    }
 }
 
 int main(int argc,char *argv[]){
