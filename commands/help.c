@@ -9,6 +9,11 @@ int main(int argc, char* argv[])
    char c;
    int length;   
 
+   //look if the command structure is correct
+   if (argc !=1) {
+      write(2, "Usage: help\n", strlen("Usage: help\n"));
+      exit(1);
+   }
    //fd will be -1 if the .help file doesn't exist (this is not expected to happen)
    if ((fd = open(".help", O_RDONLY)) == -1) {
       write(2, "An error has occurred\n", strlen("An error has occurred\n"));
