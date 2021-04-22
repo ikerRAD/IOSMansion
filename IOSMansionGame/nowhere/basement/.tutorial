@@ -16,11 +16,12 @@ Much better! As you can observe, some strange letters have appeared in the left 
 Apart from the permissions you should see a d in the leftmost part of some of the components. Those d's mean that the name related to it is a new location. 
 If a name is missing that d, it means that it is an object. 
 
-Can you see the key? Try to read it with "cat key". It will show you everything inside an object, just like reading a book!
+Can you see the key? Try to read it with "cat key". This magical word will show you everything inside an object, just like reading a book!
+Cat can also do another thing. If you say "cat" without specifying any object, anything you write will be printed on the screen. If you want to stop it, press Ctrl+C.
 
-But firstly I have to tell you something. The key will teach you how to get out using a new magical word, cd! This enables you to move around. 
+But first, I have to tell you something. The key will teach you how to get out using a new magical word, cd! This enables you to move around. 
 If you say cd followed by a location that appears in the ls list, you will enter on it. If you say cd .., you will go back to the previous location.
-C´mon, follow what it says. Every time you want to remember it say "cat Key".
+C´mon, follow what it says. Every time you want to remember it say "cat key".
 
 ->cat key
 
