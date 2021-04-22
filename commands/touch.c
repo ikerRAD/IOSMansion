@@ -6,9 +6,9 @@
 int main(int argc, char* argv[])
 {
         int fd;
-        //To avoid not having a file name
+        //To ensure command structure is correct
         if (argc <2)  {
-                write(2, "Usage: touch file_name\n", strlen("Usage: touch file_name\n"));
+                write(2, "Usage: touch object_name\n", strlen("Usage: touch object_name\n"));
                       exit(1);
         }
 
@@ -19,16 +19,15 @@ int main(int argc, char* argv[])
                 if ((fd = open(argv[i], O_CREAT, 0666)) < 0) {
                         switch (errno) {
                                case ENOENT:
-                                        write(2, "Some directories in the path don't exist\n",strlen("Some directories in the path don't exist\n"));      
+                                        write(2, "Some locations in the path don't exist\n",strlen("Some locations in the path don't exist\n"));      
                                         break;
                                 case ENOTDIR:
-                                        write(2, "A component of the path isn't a directory\n", strlen("A component of the file isn't a directory\n"));
+                                        write(2, "A component of the path isn't a location\n", strlen("A component of the path isn't a location\n"));
                                         break;
                                default:
-                                        write(2, "An error has occurred with the open system call\n", strlen("An error has occurred with the open system call\n"));
+                                        write(2, "An error has occurred\n", strlen("An error has occurred\n"));
                                         break;
                         }
-                      write(2, "ERROR open\n", 11);
                       exit(1);
                 }
         }
