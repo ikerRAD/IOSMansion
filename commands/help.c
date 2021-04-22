@@ -9,12 +9,12 @@ int main(int argc, char* argv[])
    char c;
    int length;   
 
-   //fd will be -1 if the .description file doesn't exist
+   //fd will be -1 if the .help file doesn't exist
    if ((fd = open(".help", O_RDONLY)) == -1) {
       write(2, "An error has occurred with the open system call\n", strlen("An error has occurred with the open system call\n"));
       exit(1);
    }
-   //print .description file at the standar output
+   //print .help file at the standar output
    while (length=read(fd, &c, 1) > 0) {
       write(1,&c, length);
    }
