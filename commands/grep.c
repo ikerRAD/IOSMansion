@@ -65,6 +65,7 @@ void grep(char *argv[])
 				write(2, "An error has occurred\n", strlen("An error has occurred\n"));  
 				break;
 	    }
+	    exit(1);
     }
 }
 
