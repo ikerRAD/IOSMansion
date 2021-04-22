@@ -12,8 +12,7 @@ int main(int argc, char* argv[])
         if (argc !=3)  {
                 write(2, "Usage: mv file_name new_location\n", 24);
                       exit(1);
-        }
-        //Copy the file.
+	}
       
         char* path=argv[2];
         strcat(path,"/");
