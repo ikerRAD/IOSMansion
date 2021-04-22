@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
         
         //To ensure that the command follows the cp structure.
         if (argc !=3)  {
-                write(2, "Usage: cp file_name copy_name\n", 24);
+                write(2, "Usage: cp object_name copy_name\n", 24);
                       exit(1);
         }
         //Copy the file.
@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
                              write(2, "There's already an object with that name in the location\n",strlen("There's already an object with that name in the location\n"));      
                              break;         
                         case ENOENT:
-                             write(2, "Some locations in the path or the file specified doesn't exist\n",strlen("Some locations in the path or the file specified doesn't exist\n"));      
+                             write(2, "Some locations in the path or the specified object doesn't exist\n",strlen("Some locations in the path or the specified object doesn't exist\n"));      
                              break;
                         case ENOTDIR:
                              write(2, "A component of the path isn't a location\n", strlen("A component of the file isn't a location\n"));
@@ -30,5 +30,6 @@ int main(int argc, char* argv[])
                              write(2, "An error has occurred\n", strlen("An error has occurred\n"));
                              break;
                 }
+                exit(1);
         }
 }
