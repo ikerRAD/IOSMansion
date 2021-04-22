@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
       close(fd);
    } else {
       //Command structure is not correct
-      write(2, "Usage: cat [file_name]\n", strlen("Usage: cat [file_name]\n"));
+      write(2, "Usage: cat [object_name]\n", strlen("Usage: cat [object_name]\n"));
    }
    
 }
