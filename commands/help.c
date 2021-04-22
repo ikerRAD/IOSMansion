@@ -9,9 +9,9 @@ int main(int argc, char* argv[])
    char c;
    int length;   
 
-   //fd will be -1 if the .help file doesn't exist
+   //fd will be -1 if the .help file doesn't exist (this is not expected to happen)
    if ((fd = open(".help", O_RDONLY)) == -1) {
-      write(2, "An error has occurred with the open system call\n", strlen("An error has occurred with the open system call\n"));
+      write(2, "An error has occurred\n", strlen("An error has occurred\n"));
       exit(1);
    }
    //print .help file at the standar output
