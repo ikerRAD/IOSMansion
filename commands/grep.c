@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
-int grep(char *argv[])
+void grep(char *argv[])
 {
     int fd,r,j=0, count=0;
     char temp,line[100000];
