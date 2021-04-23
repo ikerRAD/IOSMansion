@@ -67,6 +67,7 @@ void grep(char *argv[])
 	    }
 	    exit(1);
     }
+    close(fd);
 }
 
 int main(int argc,char *argv[]){
