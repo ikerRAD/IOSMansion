@@ -10,8 +10,10 @@ There you have an old toothbrush. It is so dirty, just like my ex.
 But you can use the command cp in order to create a brand new one just for you!
 This magical word enables you to copy objects, and it works like this:
 cp original_object_name new_object_name
+Call your new brush newBrush.
 
 You will also need toothpaste. Create it with a magical word I have already taught you!
+Call the toothpaste toothPaste.
 
 When you have done both things, brush your teeth by saying "brush".
 
