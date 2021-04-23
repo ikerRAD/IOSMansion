@@ -74,7 +74,7 @@ int execute(int argc, char *argv[], char *cwd)
 	}
         char path[10] = "./";
         strcat(path, argv[1]);
-        if (chdir(path)==NULL) {
+        if (chdir(path)==-1) {
 		switch (errno) {
 			case ENOENT:
 				write(2, "The new location doesn't exist\n", strlen("The new location doesn't exist\n"));
