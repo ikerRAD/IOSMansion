@@ -53,7 +53,8 @@ void _ls(const char *dir, int l){
 		//print component's name
             	write(1, str, strlen(str));
 	   	write(1, "\n", strlen("\n"));	
-	}   
+	}
+	closedir(directorio);
 }
 
 //Call the program above with current directory
