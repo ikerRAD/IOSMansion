@@ -68,7 +68,7 @@ int read_args(int* argcp, char* args[], int max, int* eofp)
 ///function for permissions
 
 void change_permissions (char *cwd) {
-	char cwd[PATH_MAX];
+	char wd[PATH_MAX];
 	char *dirpath;
 	char *dir;
 	char *touch;
@@ -79,7 +79,7 @@ char *man;
 char *help;
 char *rm;
 
-	if (getcwd(cwd, sizeof(cwd)) != NULL) {
+	if (getcwd(wd, sizeof(wd)) != NULL) {
 		dirpath = strrchr(cwd, ‘/’); //returns a pointer to last occurrence of ‘/’
 		memcpy(dir, &dirpath[1], strlen(dirpath)-1);
 	}
