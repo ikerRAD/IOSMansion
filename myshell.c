@@ -71,22 +71,23 @@ int execute(int argc, char *argv[], char *cwd)
     if (strcmp(argv[0],"cd")==0){
 	if (argc!=2) {
 		write(2, "Usage: cd new_location\n", strlen("Usage: cd new_location\n"));
-	}
-        char path[10] = "./";
-        strcat(path, argv[1]);
-        if (chdir(path)==-1) {
-		switch (errno) {
-			case ENOENT:
-				write(2, "The new location doesn't exist\n", strlen("The new location doesn't exist\n"));
-				break;
-			case ENOTDIR:
-				write(2, "A component of the path isn't a location\n", strlen("A component of the path isn't a location\n"));
-				break;
-			default:
-				write(2, "An error has occurred\n", strlen("An error has occurred\n"));
-				break;
+	} else {
+        	char path[10] = "./";
+        	strcat(path, argv[1]);
+        	if (chdir(path)==-1) {
+			switch (errno) {
+				case ENOENT:
+					write(2, "The new location doesn't exist\n", strlen("The new location doesn't exist\n"));
+					break;
+				case ENOTDIR:
+					write(2, "A component of the path isn't a location\n", strlen("A component of the path isn't a location\n"));
+					break;
+				default:
+					write(2, "An error has occurred\n", strlen("An error has occurred\n"));
+					break;
+			}
+			exit(1); //HAU KENDU????		
 		}
-		exit(1);		
 	}
 	int proccess = fork();
         if(proccess==0){
