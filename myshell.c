@@ -8,6 +8,8 @@
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 #define error(a) {perror(a); exit(1);};
 #define MAXLINE 200
@@ -63,6 +65,107 @@ int read_args(int* argcp, char* args[], int max, int* eofp)
    return 1;
 }
 
+///function for permissions
+
+void change_permissions (char *cwd) {
+	char cwd[PATH_MAX];
+	char *dirpath;
+	char *dir;
+	char *touch;
+char *mv;
+char *cp;
+char *grep;
+char *man;
+char *help;
+char *rm;
+
+	if (getcwd(cwd, sizeof(cwd)) != NULL) {
+		dirpath = strrchr(cwd, ‘/’); //returns a pointer to last occurrence of ‘/’
+		memcpy(dir, &dirpath[1], strlen(dirpath)-1);
+	}
+
+	strcat(cwd,"/commands/");
+	strcpy(touch, cwd);
+	strcat(touch, “touch”);
+	strcpy(mv, cwd);
+	strcat(mv, “mv”);
+	strcpy(cp, cwd);
+	strcat(cp, “cp”);
+	strcpy(grep, cwd);
+	strcat(grep, “grep”);
+	strcpy(man, cwd);
+	strcat(man, “man”);
+	strcpy(help, cwd);
+	strcat(help, “help”);
+	strcpy(rm, cwd);
+	strcat(rm, “rm”);
+
+	if (strcmp(dir,”basement”)==0 || strcmp(dir,”nowhere”)==0) {
+		if (chmod(touch, S_IRUSR)==-1)
+			write(2, “Error\n”, strlen(“Error\n”));
+		chmod(mv, S_IRUSR);
+		chmod(cp, S_IRUSR);
+		chmod(grep, S_IRUSR);
+		chmod(man, S_IRUSR);
+		chmod(help, S_IRUSR);
+		chmod(rm, S_IRUSR);
+
+	} else if (strcmp(dir,”stairs”)==0 ||strcmp(dir,”corridor”)==0 ||strcmp(dir,”bedroom”)==0 || strcmp(dir,”exitDoor”)==0) {
+		chmod(touch, S_IRUSR);
+		chmod(mv, S_IRUSR);
+		chmod(cp, S_IRUSR);
+		chmod(grep, S_IRUSR);
+		chmod(man, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(help, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(rm, S_IRUSR);
+
+	} else if (strcmp(dir,”wardrobe”)==0) {
+		chmod(touch, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(mv, S_IRUSR);
+		chmod(cp, S_IRUSR);
+		chmod(grep, S_IRUSR);
+		chmod(man, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(help, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(rm, S_IXUSR |S_IXGRP  | S_IXOTH);
+
+	} else if (strcmp(dir,”library”)==0) {
+		chmod(touch, S_IRUSR);
+		chmod(mv, S_IRUSR);
+		chmod(cp, S_IRUSR);
+		chmod(grep, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(man, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(help, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(rm, S_IRUSR);
+
+	} else if (strcmp(dir,”kitchen”)==0) {
+		chmod(touch, S_IRUSR);
+		chmod(mv, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(cp, S_IRUSR);
+		chmod(grep, S_IRUSR);
+		chmod(man, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(help, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(rm, S_IRUSR);
+
+	} else if (strcmp(dir,”oven”)==0) {
+		chmod(touch, S_IRUSR);
+		chmod(mv, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(cp, S_IRUSR);
+		chmod(grep, S_IRUSR);
+		chmod(man, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(help, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(rm, S_IRUSR);
+	} else if (strcmp(dir,”bath”)==0) {
+		chmod(touch, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(mv, S_IRUSR);
+		chmod(cp, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(grep, S_IRUSR);
+		chmod(man, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(help, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(rm, S_IRUSR);
+	} 
+}
+
+
 ///////////////////////////////////////
 
 int execute(int argc, char *argv[], char *cwd)
@@ -91,6 +194,7 @@ int execute(int argc, char *argv[], char *cwd)
 	}
 	int proccess = fork();
         if(proccess==0){
+	   change_permissions(cwd);
            strcat(cwd,"/commands/");
            strcat(cwd, "pwd");
 	   int *p = &argv[1];
@@ -103,6 +207,7 @@ int execute(int argc, char *argv[], char *cwd)
     } else {
         int proccess = fork();
         if(proccess==0){
+	   
 	   strcat(cwd,"/commands/");
 	   strcat(cwd, argv[0]);
            if(execvp(cwd, argv)<0){
