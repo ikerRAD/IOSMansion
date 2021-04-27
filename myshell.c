@@ -106,7 +106,17 @@ int execute(int argc, char *argv[], char *cwd)
 	   strcat(cwd,"/commands/");
 	   strcat(cwd, argv[0]);
            if(execvp(cwd, argv)<0){
-           write(2, "Unknown command\n", strlen("Unknown command\n"));
+		   switch(errno) {
+			   case EACCES:
+				   write(2, "That magical word can't be used in your current location\n", strlen("That magical word can't be used in your current location\n"));
+				   break;
+			   case ENOENT:
+				   write(2, "That magical word doesn't exist\n", strlen("That magical word doesn't exist\n"));
+				   break;
+			   default:
+				   write(2, "An error has occurred\n", strlen("An error has occurred\n"));
+				   break;
+		   }
            exit(1);
            }
         } else if (proccess > 0)
