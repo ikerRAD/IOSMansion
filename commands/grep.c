@@ -57,7 +57,7 @@ void grep(char *argv[])
     } else {
 	    switch (errno) {
 		   	case ENOENT:
-			    	write(2, "Some locations in the path or the object specified doesn't exist\n", strlen("Some locations in the path or the object specified doesn't exist\n");
+			    	write(2, "Some locations in the path or the object specified doesn't exist\n", strlen("Some locations in the path or the object specified doesn't exist\n"));
 				break;
 			case ENOTDIR:
 				 write(2, "A component of the path isn't a location\n", strlen("A component of the path isn't a location\n"));     

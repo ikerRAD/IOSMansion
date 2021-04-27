@@ -23,9 +23,6 @@ int main(int argc, char* argv[])
                         case ENOENT:
                              write(2, "Some locations in the path or the specified object doesn't exist\n",strlen("Some locations in the path or the specified object doesn't exist\n"));      
                              break;
-                        case ENOTDIR:
-                             write(2, "A component of the path isn't a location\n", strlen("A component of the file isn't a location\n"));
-                             break;
                         default:
                              write(2, "An error has occurred\n", strlen("An error has occurred\n"));
                              break;
