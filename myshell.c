@@ -139,7 +139,7 @@ char *rm;
 		chmod(help, S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(rm, S_IRUSR);
 
-	} else if (strcmp(dir,"kitchen")==0 ||(strcmp(dir, "oven"==0)) {
+	} else if (strcmp(dir,"kitchen")==0 ||(strcmp(dir, "oven"==0))) {
 		chmod(touch, S_IRUSR);
 		chmod(mv, S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(cp, S_IRUSR);
@@ -185,10 +185,10 @@ int execute(int argc, char *argv[], char *cwd)
 			}
 			exit(1); //HAU KENDU????		
 		}
-		change_permissions(cwd);
+		//change_permissions(cwd);
 		int proccess = fork();
         	if(proccess==0){
-		change_permissions(cwd);
+		//change_permissions(cwd);
            	strcat(cwd,"/commands/");
            	strcat(cwd, "pwd");
 	   	int *p = &argv[1];
@@ -233,10 +233,20 @@ main ()
    char *args[MAXARGS];
    char *cwd[PATH_MAX];
    getcwd(cwd, sizeof(cwd));
+   char *manual_path_original[PATH_MAX];
+   getcwd(manual_path_original, sizeof(manual_path_original));
+   strcat(manual_path_original,"/commands/manual/man");
+   char *manual_path[1000];
    while (1) {
       write(0,Prompt, strlen(Prompt));
       if (read_args(&argc, args, MAXARGS, &eof) && argc > 0) {
          signal(2,SIG_IGN);
+	 if(strcmp(args[0], "man")==0){
+		strcpy(manual_path, manual_path_original);
+		strcat(manual_path, args[1]);
+		strcpy(args[0], "cat");
+		strcpy(args[1], manual_path);
+	 }
          execute(argc, args, cwd);
          signal(2,SIG_DFL);
       }
