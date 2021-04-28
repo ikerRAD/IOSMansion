@@ -1,0 +1,3 @@
+touch newfilename [more newfilenames]
+Creates new empty files with the given filenames.
+Each filename will end up in a new file.
