@@ -1,0 +1,3 @@
+brush
+The command checks if the player has done all the requirements in the
+bathroom level, if so, the command itself will display a part of the password.
