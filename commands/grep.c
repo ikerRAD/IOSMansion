@@ -61,7 +61,8 @@ void grep(char *argv[])
 				break;
 			case ENOTDIR:
 				 write(2, "A component of the path isn't a location\n", strlen("A component of the path isn't a location\n"));     
-			default:
+				break;
+		    default:
 				write(2, "An error has occurred\n", strlen("An error has occurred\n"));  
 				break;
 	    }
