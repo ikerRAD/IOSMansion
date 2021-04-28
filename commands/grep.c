@@ -10,7 +10,7 @@ void grep(char *argv[])
     memset(line, 0, sizeof(line));
 	
 if (opendir(argv[2])!=NULL){
-        write(2,"Cat not able for directories\n",strlen("Cat not able for directories\n"));
+        write(2,"Grep not able for directories\n",strlen("Cat not able for directories\n"));
         exit(1);
 }
     else if((fd=open(argv[2],O_RDONLY)) != -1)
