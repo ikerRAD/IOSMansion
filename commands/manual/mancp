@@ -1,0 +1,4 @@
+cp objectname copyname
+this command creates a brand new copy of the given object.
+The new object created is a link to the old one, all changes
+done in any of those 2 objects will appear in the other one.
