@@ -1,0 +1,3 @@
+cat [filename]
+In case that a file name is given the file content is writen at the console.
+Cat will display anything the user writes.
