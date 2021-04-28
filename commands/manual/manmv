@@ -1,0 +1,2 @@
+mv object newlocation
+Changes the location of the object to the new one given.
