@@ -21,10 +21,11 @@ int main(int argc, char* argv[])
    } else if (argc == 2) {
       //fd will become -1 in case that the user gives a file name that doesn't exist 
       
-	   if (opendir(argv[1])!=NULL)
+	   if (opendir(argv[1])!=NULL){
         write(2,"Cat not able for directories\n",strlen("Cat not able for directories\n"));
-	   
-	   if ((fd = open(argv[1], O_RDONLY)) == -1) {
+	   exit(1);
+	   }
+	   else if ((fd = open(argv[1], O_RDONLY)) == -1) {
          switch (errno) {
 		   	case ENOENT:
 			    	write(2, "Some locations in the path or the object specified doesn't exist\n", strlen("Some locations in the path or the object specified doesn't exist\n"));

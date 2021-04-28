@@ -8,7 +8,12 @@ void grep(char *argv[])
     int fd,r,j=0, count=0;
     char temp,line[100000];
     memset(line, 0, sizeof(line));
-    if((fd=open(argv[2],O_RDONLY)) != -1)
+	
+if (opendir(argv[2])!=NULL){
+        write(2,"Grep not able for directories\n",strlen("Grep not able for directories\n"));
+        exit(1);
+}
+    else if((fd=open(argv[2],O_RDONLY)) != -1)
     {
 	int s=strlen(argv[1]);
 	int check=0;
@@ -61,7 +66,8 @@ void grep(char *argv[])
 				break;
 			case ENOTDIR:
 				 write(2, "A component of the path isn't a location\n", strlen("A component of the path isn't a location\n"));     
-			default:
+				break;
+		    default:
 				write(2, "An error has occurred\n", strlen("An error has occurred\n"));  
 				break;
 	    }
