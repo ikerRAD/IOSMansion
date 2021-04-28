@@ -14,6 +14,14 @@ int main(int argc, char* argv[])
                 write(2, "Usage: rm file_name\n", 24);
                 exit(1);
         }
+        if (strcmp(argv[1], "Jessica")==0) {
+		write(2, "Jessica can't be removed!\n", strlen("Jessica can't be removed!\n"));
+		exit(1);
+	}
+	if (argv[1][0]=='.') {
+		write(2, "Objects starting with . are secret, you can't remove them, you can't even see them\n", strlen("Objects starting with . are secret, you can't remove them, you can't even see them\n"));
+		exit(1);
+	}
         
         int i;
         //Delete all the files from the names given
