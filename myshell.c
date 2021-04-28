@@ -162,6 +162,16 @@ int execute(int argc, char *argv[], char *cwd)
     char copycwd[100];
     int status;
     if (strcmp(argv[0],"cd")==0){
+        char* current_path[PATH_MAX];
+        getcwd(current_path, sizeof(current_path));
+	char *dirfinal;
+	dirfinal= strrchr(current_path, '/');
+	if(strcmp(dirfinal, "/nowhere")==0){
+		if(strcmp(argv[1], "..")==0){
+			write(2, "You can't access this location", strlen("You can't access this location"));
+			exit(1);
+		}
+	}
 	if (argc!=2) {
 		write(2, "Usage: cd new_location\n", strlen("Usage: cd new_location\n"));
 	} else {
@@ -233,6 +243,13 @@ main ()
    getcwd(manual_path_original, sizeof(manual_path_original));
    strcat(manual_path_original,"/commands/manual/man");
    char *manual_path[1000];
+   
+   //Change directory to starting point
+   char *start_path[PATH_MAX];
+   getcwd(start_path, sizeof(start_path));
+   strcat(start_path, "/IOSMansionGame/nowhere/basement");
+   chdir(start_path);
+
    while (1) {
       write(0,Prompt, strlen(Prompt));
       if (read_args(&argc, args, MAXARGS, &eof) && argc > 0) {
@@ -249,3 +266,4 @@ main ()
       if (eof) exit(0);
    }
 }
+
