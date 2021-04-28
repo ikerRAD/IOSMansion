@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
         
         //Avoid not having any file name
         if (argc <2)  {
-                write(2, "Usage: rm file_name\n", 24);
+                write(2, "Usage: rm object_name\n", 24);
                 exit(1);
         }
         if (strcmp(argv[1], "Jessica")==0) {
