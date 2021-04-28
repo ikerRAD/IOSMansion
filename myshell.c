@@ -79,7 +79,7 @@ void change_permissions (char *cwd) {
 	char rm[PATH_MAX];
 
 	if (getcwd(wd, sizeof(wd)) != NULL) {
-		dirpath = strrchr(cwd, '/'); //returns a pointer to last occurrence of '/'
+		dirpath = strrchr(wd, '/'); //returns a pointer to last occurrence of '/'
 	}
 
 	strcat(cwd,"/commands/");
