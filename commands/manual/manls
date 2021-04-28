@@ -1,1 +1,3 @@
-prueba
+ls [-l]
+ls shows the objects and locations that are in the current location.
+ls -l also displays the permision of each entry.
