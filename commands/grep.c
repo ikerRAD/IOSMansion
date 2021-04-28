@@ -8,7 +8,12 @@ void grep(char *argv[])
     int fd,r,j=0, count=0;
     char temp,line[100000];
     memset(line, 0, sizeof(line));
-    if((fd=open(argv[2],O_RDONLY)) != -1)
+	
+if (opendir(argv[2])!=NULL){
+        write(2,"Cat not able for directories\n",strlen("Cat not able for directories\n"));
+        exit(1);
+}
+    else if((fd=open(argv[2],O_RDONLY)) != -1)
     {
 	int s=strlen(argv[1]);
 	int check=0;
