@@ -21,23 +21,29 @@ int main(int argc, const char *argv[]) {
   
   char *str;
   
-  int isB=0;
-  int isT=0;
+  char recipe [6][20] = {"bakingPowder","cornFlour","eggs","milk","salt","sugar"};
+  int goodIng=0;
+  int numIng=0;
+  int i;
   
-  while((d=readdir(direc))!=NULL && isT+isB!=2){
+  while((d=readdir(direc))!=NULL){
     str=d->d_name;
-    if(strcmp(str,"newBrush")==0) isB=1;
-    else if(strcmp(str,"toothPaste")==0) isT=1;
+    if (str[0]!='.') {
+      numIng++;
+      for (i = 0; i < 6; i++) {
+        if (cmp(str, recipe[i]) == 0)
+            goodIng++;
+      }
+    }
   }
   closedir(direc);
-  if(isB+isT==2){
-    write(1, "The password fragment of the bathroom is, take note please: \"streiso\"\n", strlen("The password fragment of the bathroom is, take note please: \"streiso\"\n"));
-  } else if(isB==1){
-    write(2, "There is no toothPaste!!!!!\n", strlen("There is no toothPaste!!!!!\n"));
-  } else if(isT==1){
-    write(2, "There is no newBrush!!!!!\n", strlen("There is no newBrush!!!!!\n"));
+  
+  if(numIng==6 && goodIng==6){
+    write(1, "The password fragment of the kitchen is, take note please: \"streiso\"\n", strlen("The password fragment of the kitchen is, take note please: \"streiso\"\n"));
+  } else if(numIng>6 && goodIng==6){
+    write(2, "Some ingredients in the oven do not belong to the recipe!!!\n", strlen("Some ingredients in the oven do not belong to the recipe!!!\n"));
   } else {
-    write(2,"WTF!!! You did nothing!!!\n", strlen("WTF!!! You did nothing!!!\n"));
+    write(2,"Don't cook that!!! You haven't followed the recipe correctly!!!\n", strlen("Don't cook that!!! You haven't followed the recipe correctly!!!\n"));
   }
  
 }
