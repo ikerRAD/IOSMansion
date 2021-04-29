@@ -14,5 +14,5 @@ mv [filename] [dest-dir]
 
 For example, if you want to move the salt to the oven, say: "mv salt oven"
 
-When all these ingredients are in the oven, say "cook"
+When all these ingredients are in the oven, say "cook" in the kitchen
 to obtain the piece of password!
