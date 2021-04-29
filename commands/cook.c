@@ -31,7 +31,7 @@ int main(int argc, const char *argv[]) {
     if (str[0]!='.') {
       numIng++;
       for (i = 0; i < 6; i++) {
-        if (cmp(str, recipe[i]) == 0)
+        if (strcmp(str, recipe[i]) == 0)
             goodIng++;
       }
     }

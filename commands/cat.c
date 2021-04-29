@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <errno.h>
+#include <dirent.h>
 
 int main(int argc, char* argv[])
 {
@@ -19,12 +20,12 @@ int main(int argc, char* argv[])
          write(1, &c, 1);
       } 
    } else if (argc == 2) {
-      //fd will become -1 in case that the user gives a file name that doesn't exist 
-      
-	   if (opendir(argv[1])!=NULL){
-        write(2,"Cat not able for directories\n",strlen("Cat not able for directories\n"));
-	   exit(1);
-	   }
+      	   //to ensure the file name is not a directory
+      	   DIR *isdir = opendir(argv[1]);
+	   if (isdir!=NULL){
+        	write(2,"cat is not enabled for locations\n",strlen("cat is not enabled for locations\n"));
+	   	exit(1);
+	   } //fd will be -1 in case that the user gives a file name that doesn't exist
 	   else if ((fd = open(argv[1], O_RDONLY)) == -1) {
          switch (errno) {
 		   	case ENOENT:

@@ -3,14 +3,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <dirent.h>
 void grep(char *argv[])
 {
     int fd,r,j=0, count=0;
     char temp,line[100000];
     memset(line, 0, sizeof(line));
-	
-if (opendir(argv[2])!=NULL){
-        write(2,"Grep not able for directories\n",strlen("Grep not able for directories\n"));
+	DIR *isdir = opendir(argv[2]);
+	if (isdir!=NULL){
+        write(2,"grep is not enabled for locations\n",strlen("grep is not enabled for locations\n"));
         exit(1);
 }
     else if((fd=open(argv[2],O_RDONLY)) != -1)
