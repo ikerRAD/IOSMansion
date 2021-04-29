@@ -8,7 +8,7 @@ int main(int argc, char* argv[])
         int e;
         //To ensure that the command follows the mv structure.
         if (argc !=3)  {
-                write(2, "Usage: mv object_name new_location\n", 24);
+                write(2, "Usage: mv object_name new_location\n", strlen("Usage: mv object_name new_location\n"));
                       exit(1);
 	}
 	if (strcmp(argv[1], "Jessica")==0) {
