@@ -39,7 +39,7 @@ int main(int argc, const char *argv[]) {
   closedir(direc);
   
   if(numIng==6 && goodIng==6){
-    write(1, "The password fragment of the kitchen is, take note please: \"streiso\"\n", strlen("The password fragment of the kitchen is, take note please: \"streiso\"\n"));
+    write(1, "The password fragment of the kitchen is, take note please: \"alakamula\"\n", strlen("The password fragment of the kitchen is, take note please: \"alakamula\"\n"));
   } else if(numIng>6 && goodIng==6){
     write(2, "Some ingredients in the oven do not belong to the recipe!!!\n", strlen("Some ingredients in the oven do not belong to the recipe!!!\n"));
   } else {
