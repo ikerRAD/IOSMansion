@@ -185,6 +185,45 @@ void change_permissions (char *cwd) {
 
 int processPassword(char *pwdfile)
 {
+	//first store in a string the content of the file pwdfile
+	//will ask for a password
+	//if coincide return 1, if not 0 and print an error
+	char pwd[40];
+	char input[40];
+	char temp;
+    //copying the content of the file to pwd
+    int fd,i=0;
+    if((fd=open(pwdfile,O_RDONLY)) != -1) {//making sure that there is not error but it is sure that there won´t be
+
+        while (read(fd, &temp, 1) != 0) {
+            if(temp!=' ' && temp!='\n'){
+              pwd[i]=temp;
+              i++;
+            }else{
+                close(fd);
+                break;
+            }
+        }
+
+        int argn,f=0;
+        if (read_args(&argn, input, 40, &f) && argn > 0){//reading from console (we could also use write(0,...), stdin)
+            if(argn>1){
+                write(2,"you should just introduce the password\n",strlen("you should just introduce the password\n"))
+            }else{
+               if(strcmp(input[0], pwd)==0) {
+                   return 1;
+               }else{
+                   write(2,"Password failed\n",strlen("Password failed\n"))
+                   return 0;
+               }
+            }
+
+        }
+
+    }else{
+        return 0;//will not happen
+    }
+	
 }
 
 ///////////////////////////////////////
@@ -271,20 +310,6 @@ int execute(int argc, char *argv[], char *cwd)
 		}else{
 			return;//PROVISIONAL IF PASSWORD FAILED
 		}
-		
-		int proccess = fork();
-        	if(proccess==0){
-			strcpy(copycwd, cwd);
-			change_permissions(copycwd);
-           		strcat(cwd,"/commands/");
-           		strcat(cwd, "pwd");
-	   		int *p = &argv[1];
- 	   		if(execvp(cwd, p)<0){
-           			write(2, "hey\n", strlen("hey\n"));
-           			return;
-           		}
-		} else if (proccess > 0)
-           		 wait(&status);
 
 	}
     } else {
@@ -341,12 +366,12 @@ main ()
       write(0,Prompt, strlen(Prompt));
       if (read_args(&argc, args, MAXARGS, &eof) && argc > 0) {
          signal(2,SIG_IGN);
-	 if(strcmp(args[0], "man")==0){
-		strcpy(manual_path, manual_path_original);
-		strcat(manual_path, args[1]);
-		strcpy(args[0], "cat");
-		strcpy(args[1], manual_path);
-	 }
+	    if(strcmp(args[0], "man")==0){
+		    strcpy(manual_path, manual_path_original);
+		    strcat(manual_path, args[1]);
+		    strcpy(args[0], "cat");
+		    strcpy(args[1], manual_path);
+	    }
          execute(argc, args, cwd);
          signal(2,SIG_DFL);
       }
