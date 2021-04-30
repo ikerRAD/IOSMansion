@@ -3,10 +3,11 @@
 #include <string.h>
 #include <errno.h>
 #include <dirent.h>
+#include <errno.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 
-//manual static link of processPassword method
+//manual static link of processPassword method and readargs method
 int processPassword(char *pwdfile)
 {
     //first store in a string the content of the file pwdfile
@@ -55,6 +56,54 @@ int processPassword(char *pwdfile)
         return 0;//will not happen
     }
 
+}
+
+
+int read_args(int* argcp, char* args[], int max, int* eofp)
+{
+    static char cmd[MAXLINE];
+    char* cmdp;
+    int ret,i;
+
+    *argcp = 0;
+    *eofp = 0;
+    i=0;
+    while ((ret=read(0,cmd+i,1)) == 1) {
+        if (cmd[i]=='\n') break;  // correct line
+        i++;
+        if (i>=MAXLINE) {
+            ret=-2;        // line too long
+            break;
+        }
+    }
+    switch (ret)
+    {
+        case 1 : cmd[i+1]='\0';    // correct reading
+            break;
+        case 0 : *eofp = 1;        // end of file
+            return 0;
+            break;
+        case -1 : *argcp = -1;     // reading failure
+            fprintf(stderr,"Reading failure \n");
+            return 0;
+            break;
+        case -2 : *argcp = -1;     // line too long
+            fprintf(stderr,"Line too long -- removed command\n");
+            return 0;
+            break;
+    }
+    // Analyzing the line
+    cmdp= cmd;
+    for (i=0; i<max; i++) {  /* to show every argument */
+        if ((args[i]= strtok(cmdp, " \t\n")) == (char*)NULL) break;
+        cmdp= NULL;
+    }
+    if (i >= max) {
+        fprintf(stderr,"Too many arguments -- removed command\n");
+        return 0;
+    }
+    *argcp= i;
+    return 1;
 }
 
 
