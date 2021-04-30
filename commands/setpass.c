@@ -65,7 +65,7 @@ int main(int argc, char* argv[])
          exit(1);
     }
 
-    write(fd,&argv[2],strlen(argv[2]));
+    write(fd,argv[2],strlen(argv[2]));
 
     close(fd);
 
