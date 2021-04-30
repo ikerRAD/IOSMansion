@@ -165,9 +165,13 @@ int main(int argc, char* argv[])
 
     int i;
     if(valid==1) {
+
         //Sees if there is any problem in the creation
         char file[20] = ".pass";
         strcat(file, argv[1]);
+        if(foundtwo==1){
+            unlink(file);//reset the file
+        }
         if ((fd = open(file, O_CREAT | O_WRONLY, 0666)) < 0) {
             switch (errno) {
                 case ENOENT:
