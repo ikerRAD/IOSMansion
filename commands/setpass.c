@@ -75,7 +75,7 @@ int read_args(int* argcp, char* args[], int max, int* eofp)
     while ((ret=read(0,cmd+i,1)) == 1) {
         if (cmd[i]=='\n') break;  // correct line
         i++;
-        if (i>=MAXLINE) {
+        if (i>=20) {
             ret=-2;        // line too long
             break;
         }
