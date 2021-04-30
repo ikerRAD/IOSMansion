@@ -6,9 +6,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <dirent.h>
 #include <errno.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <sys/types.h>
 #include <fcntl.h>
 
 #define error(a) {perror(a); exit(1);};
@@ -177,6 +179,11 @@ void change_permissions (char *cwd) {
 	} 
 }
 
+/////////////////////////////////////////
+
+int processPassword(char *pwdfile)
+{
+}
 
 ///////////////////////////////////////
 
@@ -198,35 +205,61 @@ int execute(int argc, char *argv[], char *cwd)
 	if (argc!=2) {
 		write(2, "Usage: cd new_location\n", strlen("Usage: cd new_location\n"));
 	} else {
-        	char path[10] = "./";
-        	strcat(path, argv[1]);
-        	if (chdir(path)==-1) {
-			switch (errno) {
-				case ENOENT:
-					write(2, "The new location doesn't exist\n", strlen("The new location doesn't exist\n"));
-					break;
-				case ENOTDIR:
-					write(2, "A component of the path isn't a location\n", strlen("A component of the path isn't a location\n"));
-					break;
-				default:
-					write(2, "An error has occurred\n", strlen("An error has occurred\n"));
-					break;
+		int valid=0;
+		int found=0;
+		//search for .pass[location] file
+		struct dirent *d;
+ 		struct stat fileStat;
+  
+  		DIR *direc=opendir(".");
+  
+  		char *str;
+  		
+		char stri[20]=".pass";
+		strcat(stri,argv[1]);
+  		while((d=readdir(direc))!=NULL && found!=1){
+    			str=d->d_name;
+    			if(strcmp(str,stri)==0) found=1;
+  		}
+  		closedir(direc);
+		//process password if needed
+		if(found==1){
+			valid=processPassword(stri);
+		}else valid=1;
+		
+		if(valid==1){
+        		char path[10] = "./";
+        		strcat(path, argv[1]);
+        		if (chdir(path)==-1) {
+				switch (errno) {
+					case ENOENT:
+						write(2, "The new location doesn't exist\n", strlen("The new location doesn't exist\n"));
+						break;
+					case ENOTDIR:
+						write(2, "A component of the path isn't a location\n", strlen("A component of the path isn't a location\n"));
+						break;
+					default:
+						write(2, "An error has occurred\n", strlen("An error has occurred\n"));
+						break;
+				}
+				return;		
 			}
-			return;		
+			int proccess = fork();
+        		if(proccess==0){
+				strcpy(copycwd, cwd);
+				change_permissions(copycwd);
+           			strcat(cwd,"/commands/");
+           			strcat(cwd, "pwd");
+	   			int *p = &argv[1];
+ 	   			if(execvp(cwd, p)<0){
+           				write(2, "hey\n", strlen("hey\n"));
+           				return;
+           			}
+			} else if (proccess > 0)
+           		 	wait(&status);
+		}else{
+			return;//PROVISIONAL IF PASSWORD FAILED
 		}
-		int proccess = fork();
-        	if(proccess==0){
-			strcpy(copycwd, cwd);
-			change_permissions(copycwd);
-           		strcat(cwd,"/commands/");
-           		strcat(cwd, "pwd");
-	   		int *p = &argv[1];
- 	   		if(execvp(cwd, p)<0){
-           			write(2, "hey\n", strlen("hey\n"));
-           			return;
-           		}
-		} else if (proccess > 0)
-           		 wait(&status);
 	}
     } else {
         int proccess = fork();
