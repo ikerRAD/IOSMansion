@@ -1,3 +1,0 @@
-greep wordtofind filename
-Search for the lines in the file that contains the word given.
-The display set the word in brackets.

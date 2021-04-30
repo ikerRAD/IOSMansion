@@ -1,0 +1,3 @@
+grep wordtofind objectname
+Print the lines in the object that contain the given word.
+If the word is found, it will be displayed in brackets.
