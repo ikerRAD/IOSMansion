@@ -189,7 +189,7 @@ int processPassword(char *pwdfile)
 	//will ask for a password
 	//if coincide return 1, if not 0 and print an error
 	char pwd[40];
-	char input[40];
+	char *input[40];
 	char temp;
     //copying the content of the file to pwd
     int fd,i=0;
