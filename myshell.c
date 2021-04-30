@@ -188,6 +188,7 @@ int processPassword(char *pwdfile)
 	//first store in a string the content of the file pwdfile
 	//will ask for a password
 	//if coincide return 1, if not 0 and print an error
+
 	char pwd[20];
 	char *input[40];
 	char temp;
@@ -208,7 +209,7 @@ int processPassword(char *pwdfile)
 	char paw[i];
 	int j;
 	for(j=0;j<i;j++){
-	paw[j]=pwd[j];
+		paw[j]=pwd[j];
 	}
 
         int argn,f=0;
