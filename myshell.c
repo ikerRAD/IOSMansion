@@ -185,6 +185,12 @@ void change_permissions (char *cwd) {
 
 int processPassword(char *pwdfile)
 {
+	//first store in a string the content of the file pwdfile
+	//will ask for a password
+	//if coincide return 1, if not 0 and print an error
+	char pwd[40];
+	char input[40];
+	
 }
 
 ///////////////////////////////////////
