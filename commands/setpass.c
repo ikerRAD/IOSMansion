@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
         exit(1);
     }
 
-    if(strcmp(argv[1],"library")){
+    if(strcmp(argv[1],"library")==0){
         write(2, "Do not set a password there!\n", strlen("Do not set a password there!\n"));
         exit(1);
     }
