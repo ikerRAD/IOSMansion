@@ -10,12 +10,14 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <stdbool.h>
 
 #define error(a) {perror(a); exit(1);};
 #define MAXLINE 200
 #define MAXARGS 20
 #define PATH_MAX 200
 
+bool nowhere = true;
 /////////// reading commands:
 
 int read_args(int* argcp, char* args[], int max, int* eofp)
@@ -214,6 +216,15 @@ int execute(int argc, char *argv[], char *cwd)
 			}
 			return;		
 		}
+		else {
+                      getcwd(current_path, sizeof(current_path));
+		      if ((strcmp(strrchr(current_path, '/'), "/nowhere")==0) && nowhere){
+		      argv[0] = "cat";
+                      argv[1] = ".tutorial";
+                      nowhere = false;	
+                      execute(2, argv, cwd);
+	              }
+                }
 		int proccess = fork();
         	if(proccess==0){
 			strcpy(copycwd, cwd);
@@ -272,6 +283,11 @@ main ()
    getcwd(start_path, sizeof(start_path));
    strcat(start_path, "/IOSMansionGame/nowhere/basement");
    chdir(start_path);
+   
+   //Execute tutorial
+   args[0] = "cat";
+   args[1] = ".tutorial";
+   execute(2,args, cwd);
 
    while (1) {
       write(0,Prompt, strlen(Prompt));
