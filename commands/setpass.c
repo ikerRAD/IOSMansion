@@ -1,11 +1,15 @@
-#include <fcntl.h>
+#include <signal.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <string.h>
-#include <errno.h>
 #include <dirent.h>
 #include <errno.h>
+#include <unistd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <fcntl.h>
+#include <stdbool.h>
 
 //manual static link of processPassword method and readargs method
 int processPassword(char *pwdfile)
