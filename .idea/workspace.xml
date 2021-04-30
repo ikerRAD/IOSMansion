@@ -6,9 +6,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="138ee9fe-3f3b-4182-a0f7-99a790529685" name="Default Changelist" comment="password system">
-      <change afterPath="$PROJECT_DIR$/commands/setpass.c" afterDir="false" />
+    <list default="true" id="138ee9fe-3f3b-4182-a0f7-99a790529685" name="Default Changelist" comment="setpwd command">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commands/setpass.c" beforeDir="false" afterPath="$PROJECT_DIR$/commands/setpass.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +54,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619799155812</updated>
-      <workItem from="1619799160378" duration="9484000" />
+      <workItem from="1619799160378" duration="11579000" />
     </task>
     <task id="LOCAL-00001" summary="password system">
       <created>1619803378950</created>
@@ -70,7 +70,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619805429579</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="setpwd command">
+      <created>1619818430207</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1619818430207</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -89,6 +96,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="password system" />
-    <option name="LAST_COMMIT_MESSAGE" value="password system" />
+    <MESSAGE value="setpwd command" />
+    <option name="LAST_COMMIT_MESSAGE" value="setpwd command" />
   </component>
 </project>
