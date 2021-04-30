@@ -188,14 +188,14 @@ int processPassword(char *pwdfile)
 	//first store in a string the content of the file pwdfile
 	//will ask for a password
 	//if coincide return 1, if not 0 and print an error
-	char pwd[40];
-	char input[40];
+	char pwd[20];
+	char *input[40];
 	char temp;
     //copying the content of the file to pwd
     int fd,i=0;
     if((fd=open(pwdfile,O_RDONLY)) != -1) {//making sure that there is not error but it is sure that there won´t be
 
-        while (read(fd, &temp, 1) != 0) {
+        while (read(fd, &temp, sizeof(char)) != 0) {
             if(temp!=' ' && temp!='\n'){
               pwd[i]=temp;
               i++;
@@ -204,13 +204,19 @@ int processPassword(char *pwdfile)
                 break;
             }
         }
+	
+	char paw[i];
+	int j;
+	for(j=0;j<i;j++){
+	paw[j]=pwd[j];
+	}
 
         int argn,f=0;
         if (read_args(&argn, input, 40, &f) && argn > 0){//reading from console (we could also use write(0,...), stdin)
             if(argn>1){
                 write(2,"you should just introduce the password\n",strlen("you should just introduce the password\n"));
             }else{
-               if(strcmp(input[0], pwd)==0) {
+		if(strcmp(input[0], paw)==0) {
                    return 1;
                }else{
                    write(2,"Password failed\n",strlen("Password failed\n"));
@@ -251,7 +257,9 @@ int execute(int argc, char *argv[], char *cwd)
 		//search for .pass[location] file
 		struct dirent *d;
  		struct stat fileStat;
-  
+		char path[10] = "./";
+		strcat(path,argv[1]);  		
+
   		DIR *direc=opendir(".");
   
   		char *str;
@@ -270,8 +278,7 @@ int execute(int argc, char *argv[], char *cwd)
 		}else valid=1;
 		
 		if(valid==1){
-        		char path[10] = "./";
-        		strcat(path, argv[1]);
+        		
         		if (chdir(path)==-1) {
 				switch (errno) {
 					case ENOENT:
