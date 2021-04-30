@@ -265,6 +265,7 @@ int execute(int argc, char *argv[], char *cwd)
   		closedir(direc);
 		//process password if needed
 		if(found==1){
+		    write(1,"introduce password:\n",strlen("introduce password:\n"));
 			valid=processPassword(stri);
 		}else valid=1;
 		
