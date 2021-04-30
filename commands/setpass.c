@@ -65,7 +65,7 @@ int processPassword(char *pwdfile)
 
 int read_args(int* argcp, char* args[], int max, int* eofp)
 {
-    static char cmd[MAXLINE];
+    static char cmd[20];
     char* cmdp;
     int ret,i;
 
