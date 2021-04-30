@@ -1,3 +1,3 @@
 rm object [other objects]
-Delates the objects given.
-Can remove more than one object at a time.
+Deletes the objects given.
+More than one object can be removed at a time.
