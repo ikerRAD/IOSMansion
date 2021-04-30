@@ -54,7 +54,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619799155812</updated>
-      <workItem from="1619799160378" duration="11579000" />
+      <workItem from="1619799160378" duration="12740000" />
     </task>
     <task id="LOCAL-00001" summary="password system">
       <created>1619803378950</created>
@@ -77,7 +77,28 @@
       <option name="project" value="LOCAL" />
       <updated>1619818430207</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="setpwd command">
+      <created>1619820463512</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1619820463512</updated>
+    </task>
+    <task id="LOCAL-00005" summary="setpwd command">
+      <created>1619820591215</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1619820591215</updated>
+    </task>
+    <task id="LOCAL-00006" summary="setpwd command">
+      <created>1619820713286</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1619820713286</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

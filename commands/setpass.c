@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
     //Sees if there is any problem in the creation
     char file[20]=".pass";
     strcat(file,argv[1]);
-    if ((fd = open(file, O_CREAT, 0666)) < 0) {
+    if ((fd = open(file, O_CREAT|O_WRONLY, 0666)) < 0) {
          switch (errno) {
              case ENOENT:
                  write(2, "Some locations in the path don't exist\n",strlen("Some locations in the path don't exist\n"));
