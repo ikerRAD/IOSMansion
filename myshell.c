@@ -208,12 +208,12 @@ int processPassword(char *pwdfile)
         int argn,f=0;
         if (read_args(&argn, input, 40, &f) && argn > 0){//reading from console (we could also use write(0,...), stdin)
             if(argn>1){
-                write(2,"you should just introduce the password\n",strlen("you should just introduce the password\n"))
+                write(2,"you should just introduce the password\n",strlen("you should just introduce the password\n"));
             }else{
                if(strcmp(input[0], pwd)==0) {
                    return 1;
                }else{
-                   write(2,"Password failed\n",strlen("Password failed\n"))
+                   write(2,"Password failed\n",strlen("Password failed\n"));
                    return 0;
                }
             }
