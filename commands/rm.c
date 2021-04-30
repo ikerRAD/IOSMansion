@@ -14,7 +14,11 @@ int main(int argc, char* argv[])
                 write(2, "Usage: rm object_name\n", 24);
                 exit(1);
         }
-        if (strcmp(argv[1], "Jessica")==0) {
+	if (strstr(argv[1], "/")) {
+		write(2, "You can't remove objects from outside your location\n", strlen("You can't remove objects from outside your location\n"));
+        	exit(1);
+	}
+	if (strcmp(argv[1], "Jessica")==0) {
 		write(2, "Jessica can't be removed!\n", strlen("Jessica can't be removed!\n"));
 		exit(1);
 	}
