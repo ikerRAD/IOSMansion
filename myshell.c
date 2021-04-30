@@ -246,6 +246,15 @@ int execute(int argc, char *argv[], char *cwd)
 				}
 				return;		
 			}
+			else {
+                     		getcwd(current_path, sizeof(current_path));
+		      		if ((strcmp(strrchr(current_path, '/'), "/nowhere")==0) && nowhere){
+		      			argv[0] = "cat";
+                     			argv[1] = ".tutorial";
+                      			nowhere = false;	
+                     			execute(2, argv, cwd);
+	       	       		}
+                	}
 			int proccess = fork();
         		if(proccess==0){
 				strcpy(copycwd, cwd);
@@ -262,15 +271,7 @@ int execute(int argc, char *argv[], char *cwd)
 		}else{
 			return;//PROVISIONAL IF PASSWORD FAILED
 		}
-		else {
-                      getcwd(current_path, sizeof(current_path));
-		      if ((strcmp(strrchr(current_path, '/'), "/nowhere")==0) && nowhere){
-		      argv[0] = "cat";
-                      argv[1] = ".tutorial";
-                      nowhere = false;	
-                      execute(2, argv, cwd);
-	              }
-                }
+		
 		int proccess = fork();
         	if(proccess==0){
 			strcpy(copycwd, cwd);
