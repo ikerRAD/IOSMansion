@@ -133,45 +133,45 @@ void change_permissions (char *cwd) {
 		chmod(help, S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(rm, S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
-		chmod(brush, S_IRUSR);
+		chmod(brush, S_IRUSR|S_IRGRP|S_IROTH);
 	} else if (strcmp(dirpath,"/library")==0) {
-		chmod(touch, S_IRUSR);
-		chmod(mv, S_IRUSR);
-		chmod(cp, S_IRUSR);
+		chmod(touch, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(grep, S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(man, S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IXUSR |S_IXGRP  | S_IXOTH);
-		chmod(rm, S_IRUSR);
+		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
-		chmod(brush, S_IRUSR);
+		chmod(brush, S_IRUSR|S_IRGRP|S_IROTH);
 	} else if (strcmp(dirpath,"/kitchen")==0) {
-		chmod(touch, S_IRUSR);
+		chmod(touch, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(mv, S_IXUSR |S_IXGRP  | S_IXOTH);
-		chmod(cp, S_IRUSR);
-		chmod(grep, S_IRUSR);
+		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(man, S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IXUSR |S_IXGRP  | S_IXOTH);
-		chmod(rm, S_IRUSR);
+		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cook, S_IXUSR |S_IXGRP  | S_IXOTH);
-		chmod(brush, S_IRUSR);
+		chmod(brush, S_IRUSR|S_IRGRP|S_IROTH);
 	} else if (strcmp(dirpath, "/oven")==0) {
-		chmod(touch, S_IRUSR);
+		chmod(touch, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(mv, S_IXUSR |S_IXGRP  | S_IXOTH);
-		chmod(cp, S_IRUSR);
-		chmod(grep, S_IRUSR);
+		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(man, S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IXUSR |S_IXGRP  | S_IXOTH);
-		chmod(rm, S_IRUSR);
+		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
-		chmod(brush, S_IRUSR);
+		chmod(brush, S_IRUSR|S_IRGRP|S_IROTH);
 	} else if (strcmp(dirpath,"/bath")==0) {
 		chmod(touch, S_IXUSR |S_IXGRP  | S_IXOTH);
-		chmod(mv, S_IRUSR);
+		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cp, S_IXUSR |S_IXGRP  | S_IXOTH);
-		chmod(grep, S_IRUSR);
+		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(man, S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IXUSR |S_IXGRP  | S_IXOTH);
-		chmod(rm, S_IRUSR);
+		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(brush, S_IXUSR |S_IXGRP  | S_IXOTH);
 	} 
