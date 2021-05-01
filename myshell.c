@@ -13,13 +13,32 @@
 #include <sys/types.h>
 #include <fcntl.h>
 #include <stdbool.h>
+#include <termios.h>
+#include <limits.h>
 
 #define error(a) {perror(a); exit(1);};
 #define MAXLINE 200
 #define MAXARGS 20
-#define PATH_MAX 200
 
 bool nowhere = true;
+
+/// terminal configuration functions
+
+void SetTermNoCanon ( struct termios *SavedTM) {
+	struct termios tm;
+
+	tcgetattr(0, &tm);	//read current properties
+	tcgetattr(0, SavedTM);	//read current properties
+	tm.c_lflag &= ~(ICANON|ECHO);
+	tm.c_cc[VMIN]=1;
+	tm.c_cc[VTIME]=0;
+	tcsetattr(0, TCSANOW, &tm);	//change properties;
+}
+
+void Berreskuratu_tm(struct termios *tm) {
+	tcsetattr(0, TCSANOW, tm);
+}
+
 /////////// reading commands:
 
 int read_args(int* argcp, char* args[], int max, int* eofp)
@@ -123,7 +142,7 @@ void change_permissions (char *cwd) {
 		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
-		chmod(man, S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(man, S_IRUSER | S_IRGRP | S_IROTH|S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
@@ -188,7 +207,7 @@ int processPassword(char *pwdfile)
 	//first store in a string the content of the file pwdfile
 	//will ask for a password
 	//if coincide return 1, if not 0 and print an error
-
+	struct termios saved_tm;
 	char pwd[20];
 	char *input[40];
 	char temp;
@@ -211,20 +230,29 @@ int processPassword(char *pwdfile)
 	for(j=0;j<i;j++){
 		paw[j]=pwd[j];
 	}
-
-        int argn,f=0;
-        if (read_args(&argn, input, 40, &f) && argn > 0){//reading from console (we could also use write(0,...), stdin)
-            if(argn>1){
-                write(2,"you should just introduce the password\n",strlen("you should just introduce the password\n"));
-            }else{
-		if(strcmp(input[0], paw)==0) {
-                   return 1;
-               }else{
-                   write(2,"Password failed\n",strlen("Password failed\n"));
-                   return 0;
-               }
-            }
-
+	
+	char r;
+	char inp[40];
+	int i=0;
+	SetTermNoCanon(&saved_tm); //save current terminal properties
+	//read password
+	while (read(0,&r,1)>0) {
+		if (r == '\n') {
+			write(1, "\n", strlen("\n"));
+			break;
+		} else {
+			inp[i]=r;
+			i++;
+			write(1, "*", strlen("*"));
+		}
+	}
+	Berreskuratu_tm(&saved_tm); //restore terminal properties
+	//look if entered password is correct
+	if(strcmp(inp, paw)==0) {
+               return 1;
+        }else{
+               write(2,"Password is not correct\n",strlen("Password is not correct\n"));
+               return 0;
         }
 
     }else{
