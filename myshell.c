@@ -287,7 +287,7 @@ int execute(int argc, char *argv[], char *cwd)
     char copycwd[100];
     int status;
     if (strcmp(argv[0],"cd")==0){
-        char* current_path[PATH_MAX];
+        char current_path[PATH_MAX];
         getcwd(current_path, sizeof(current_path));
 	char *dirfinal;
 	dirfinal= strrchr(current_path, '/');
@@ -356,9 +356,8 @@ int execute(int argc, char *argv[], char *cwd)
 				change_permissions(copycwd);
            			strcat(cwd,"/commands/");
            			strcat(cwd, "pwd");
-	   			int *p = &argv[1];
- 	   			if(execvp(cwd, p)<0){
-           				write(2, "hey\n", strlen("hey\n"));
+ 	   			if(execlp(cwd, "pwd", (char *)NULL)<0){
+           				write(2, "An error has occurred\n", strlen("An error has occurred\n"));
            				return;
            			}
 			} else if (proccess > 0)
@@ -400,15 +399,15 @@ main ()
    int eof= 0;
    int argc;
    char *args[MAXARGS];
-   char *cwd[PATH_MAX];
+   char cwd[PATH_MAX];
    getcwd(cwd, sizeof(cwd));
-   char *manual_path_original[PATH_MAX];
+   char manual_path_original[PATH_MAX];
    getcwd(manual_path_original, sizeof(manual_path_original));
    strcat(manual_path_original,"/commands/manual/man");
-   char *manual_path[1000];
+   char manual_path[1000];
    
    //Change directory to starting point
-   char *start_path[PATH_MAX];
+   char start_path[PATH_MAX];
    getcwd(start_path, sizeof(start_path));
    strcat(start_path, "/IOSMansionGame/nowhere/basement");
    chdir(start_path);
