@@ -10,14 +10,32 @@
 #include <sys/types.h>
 #include <fcntl.h>
 #include <stdbool.h>
+#include <termios.h>
 
-//manual static link of processPassword method and readargs method
+/// terminal configuration functions
+
+void SetTermNoCanon ( struct termios *SavedTM) {
+	struct termios tm;
+
+	tcgetattr(0, &tm);	//read current properties
+	tcgetattr(0, SavedTM);	//read current properties
+	tm.c_lflag &= ~(ICANON|ECHO);
+	tm.c_cc[VMIN]=1;
+	tm.c_cc[VTIME]=0;
+	tcsetattr(0, TCSANOW, &tm);	//change properties;
+}
+
+void Berreskuratu_tm(struct termios *tm) {
+	tcsetattr(0, TCSANOW, tm);
+}
+
+//manual static link of processPassword method
 int processPassword(char *pwdfile)
 {
     //first store in a string the content of the file pwdfile
     //will ask for a password
     //if coincide return 1, if not 0 and print an error
-
+    struct termios saved_tm;
     char pwd[20];
     char *input[40];
     char temp;
@@ -34,26 +52,36 @@ int processPassword(char *pwdfile)
                 break;
             }
         }
-
+        //copy pwd to paw to avoid bugs
         char paw[i];
         int j;
         for(j=0;j<i;j++){
             paw[j]=pwd[j];
         }
 
-        int argn,f=0;
-        if (read_args(&argn, input, 40, &f) && argn > 0){//reading from console (we could also use write(0,...), stdin)
-            if(argn>1){
-                write(2,"you should just introduce the password\n",strlen("you should just introduce the password\n"));
-            }else{
-                if(strcmp(input[0], paw)==0) {
-                    return 1;
-                }else{
-                    write(2,"Password failed\n",strlen("Password failed\n"));
-                    return 0;
-                }
-            }
-
+        //read password from input
+        char r;
+	    char inp[40];
+	    int i=0;
+	    SetTermNoCanon(&saved_tm); //save current terminal properties
+	    //read password
+	    while (read(0,&r,1)>0) {
+		    if (r == '\n') {
+		    	write(1, "\n", strlen("\n"));
+		    	break;
+		    } else {
+		    	inp[i]=r;
+		    	i++;
+		    	write(1, "*", strlen("*"));
+		    }
+	    }
+	    Berreskuratu_tm(&saved_tm); //restore terminal properties
+	    //look if entered password is correct
+	    if(strcmp(inp, paw)==0) {
+               return 1;
+        }else{
+               write(2,"Password is not correct\n",strlen("Password is not correct\n"));
+               return 0;
         }
 
     }else{
@@ -62,70 +90,25 @@ int processPassword(char *pwdfile)
 
 }
 
-
-int read_args(int* argcp, char* args[], int max, int* eofp)
-{
-    static char cmd[20];
-    char* cmdp;
-    int ret,i;
-
-    *argcp = 0;
-    *eofp = 0;
-    i=0;
-    while ((ret=read(0,cmd+i,1)) == 1) {
-        if (cmd[i]=='\n') break;  // correct line
-        i++;
-        if (i>=20) {
-            ret=-2;        // line too long
-            break;
-        }
-    }
-    switch (ret)
-    {
-        case 1 : cmd[i+1]='\0';    // correct reading
-            break;
-        case 0 : *eofp = 1;        // end of file
-            return 0;
-            break;
-        case -1 : *argcp = -1;     // reading failure
-            fprintf(stderr,"Reading failure \n");
-            return 0;
-            break;
-        case -2 : *argcp = -1;     // line too long
-            fprintf(stderr,"Line too long -- removed command\n");
-            return 0;
-            break;
-    }
-    // Analyzing the line
-    cmdp= cmd;
-    for (i=0; i<max; i++) {  /* to show every argument */
-        if ((args[i]= strtok(cmdp, " \t\n")) == (char*)NULL) break;
-        cmdp= NULL;
-    }
-    if (i >= max) {
-        fprintf(stderr,"Too many arguments -- removed command\n");
-        return 0;
-    }
-    *argcp= i;
-    return 1;
-}
-
-
 int main(int argc, char* argv[])
 {
     int fd;
-    //To ensure command structure is correct
+    //Error management
     if (argc !=3)  {
-        write(2, "Usage: setpass object_name password\n", strlen("Usage: setpass object_name password\n"));
+        write(2, "Usage: setpass location password\n", strlen("Usage: setpass location password\n"));
         exit(1);
     }
-    if (strstr(argv[1], "/")) {
-        write(2, "You set a password to objects from outside your location\n", strlen("You set a password to objects from outside your location\n"));
+    if (strstr(argv[1], "/")||strstr(argv[1], "..")) {
+        write(2, "You can only set a password to a directly reachable location\n", strlen("You can only set a password to a directly reachable location\n"));
+        exit(1);
+    }
+    if(strcmp(argv[1],"library")==0){
+        write(2, "Do not set a password there!\n", strlen("Do not set a password there!\n"));
         exit(1);
     }
 
-    int found=0;
-    int valid;
+    int found=0; //to ensure the location specified exists
+    int valid; //to see if there is some password to access the location
     int foundtwo=0;
     //search for .pass[location] file
     struct dirent *d;
@@ -140,57 +123,32 @@ int main(int argc, char* argv[])
 
     while((d=readdir(direc))!=NULL && (found!=1 || foundtwo!=1)){
         str=d->d_name;
-        if(strcmp(str,argv[1])==0) found=1;
+        if(strcmp(str,argv[1])==0) found=1;  //checks if the directory exists
         if(strcmp(passn,str)==0) foundtwo=1; //checks if the directory already has a password
     }
     closedir(direc);
 
-    if(found==0){
-        write(2, "You must select an existing directory in this location\n", strlen("You must select an existing directory in this location\n"));
-        exit(1);
-    }
-
-    if(strcmp(argv[1],"library")==0){
-        write(2, "Do not set a password there!\n", strlen("Do not set a password there!\n"));
+    if(found==0){//the location specified does not exist
+        write(2, "You must select an existing directly reachable location\n", strlen("You must select an existing directly reachable location\nn"));
         exit(1);
     }
 
     if(foundtwo==1){//it needs to verify the last password before
-        write(1,"introduce password:\n",strlen("introduce password:\n"));
-        valid=processPassword(passn);
+        write(1,"This location already has a password\nIn order to change it, introduce the actual password:\n",strlen("This location already has a password\nIn order to change it, introduce the actual password:\n"));
+        valid=processPassword(passn); //valid will be 1 if player puts the correct password
     }else{
         valid=1;
     }
 
-
     int i;
-    if(valid==1) {
-
-        //Sees if there is any problem in the creation
+    if(valid==1) { //password is going to be changed (.passlocation file
         char file[20] = ".pass";
         strcat(file, argv[1]);
-        if(foundtwo==1){
+        if(foundtwo==1){//if the location already had a password, reset it
             unlink(file);//reset the file
         }
-        if ((fd = open(file, O_CREAT | O_WRONLY, 0666)) < 0) {
-            switch (errno) {
-                case ENOENT:
-                    write(2, "Some locations in the path don't exist\n",
-                          strlen("Some locations in the path don't exist\n"));
-                    break;
-                case ENOTDIR:
-                    write(2, "A component of the path isn't a location\n",
-                          strlen("A component of the path isn't a location\n"));
-                    break;
-                default:
-                    write(2, "An error has occurred\n", strlen("An error has occurred\n"));
-                    break;
-            }
-            exit(1);
-        }
-
-        write(fd, argv[2], strlen(argv[2]));
-
+        fd = open(file, O_CREAT | O_WRONLY, 0666) //create .passlocation file
+        write(fd, argv[2], strlen(argv[2])); //write the specified password on it
         close(fd);
     }
 }
