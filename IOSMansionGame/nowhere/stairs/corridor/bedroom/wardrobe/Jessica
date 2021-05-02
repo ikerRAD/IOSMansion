@@ -19,4 +19,9 @@ Ah! Just in case that evil brain is planning to remove me...
 I am a ghost, I decide when to appear, so you won't get rid of me unless you escape! Hahahahaha
 
 Once you have clean clothes on, lock this wardrobe with a password to avoid another 
-drunkie stealing your old clothes in a crazy night as the one you had.
+drunkie steal your old clothes in a crazy night as the one you had.
+To do that, go back to the bedroom and use this magical word:
+setpass location password
+This enables you to put passwords to some locations. All you need to specify is the
+location to which you want to put a password and the password itself.
+(don't forget it or you won't be able to enter the wardrobe again)
