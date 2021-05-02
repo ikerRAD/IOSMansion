@@ -102,6 +102,7 @@ void change_permissions (char *cwd) {
 	char rm[PATH_MAX];
 	char cook[PATH_MAX];
 	char brush[PATH_MAX];
+	char setpass[PATH_MAX];
 
 	if (getcwd(wd, sizeof(wd)) != NULL) {
 		dirpath = strrchr(wd, '/'); //returns a pointer to last occurrence of '/'
@@ -126,6 +127,8 @@ void change_permissions (char *cwd) {
 	strcat(cook, "cook");
 	strcpy(brush, cwd);
 	strcat(brush, "brush");
+	strcpy(setpass, cwd);
+	strcat(setpass, "setpass");
 
 	if (strcmp(dirpath,"/basement")==0 || strcmp(dirpath,"/nowhere")==0) {
 		chmod(touch, S_IRUSR|S_IRGRP|S_IROTH);
@@ -137,6 +140,7 @@ void change_permissions (char *cwd) {
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(brush, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(setpass, S_IRUSR|S_IRGRP|S_IROTH);
 	} else if (strcmp(dirpath,"/stairs")==0 ||strcmp(dirpath,"/corridor")==0 ||strcmp(dirpath,"/bedroom")==0 || strcmp(dirpath,"/exitDoor")==0) {
 		chmod(touch, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
@@ -223,14 +227,12 @@ int processPassword(char *pwdfile)
                 close(fd);
                 break;
             }
-        }
-	
+        }	
 	char paw[i];
 	int j;
 	for(j=0;j<i;j++){
 		paw[j]=pwd[j];
-	}
-	
+	}	
 	char r;
 	char inp[40];
 	int i=0;

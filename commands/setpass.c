@@ -61,8 +61,8 @@ int processPassword(char *pwdfile)
 
         //read password from input
         char r;
-	    char inp[40];
-	    int i=0;
+	    char inp[i];
+	    int k=0;
 	    SetTermNoCanon(&saved_tm); //save current terminal properties
 	    //read password
 	    while (read(0,&r,1)>0) {
@@ -70,13 +70,13 @@ int processPassword(char *pwdfile)
 		    	write(1, "\n", strlen("\n"));
 		    	break;
 		    } else {
-		    	inp[i]=r;
-		    	i++;
+		    	inp[k]=r;
+		    	k++;
 		    	write(1, "*", strlen("*"));
 		    }
 	    }
 	    Berreskuratu_tm(&saved_tm); //restore terminal properties
-	    //look if entered password is correct
+		//look if entered password is correct
 	    if(strcmp(inp, paw)==0) {
                return 1;
         }else{
@@ -141,13 +141,13 @@ int main(int argc, char* argv[])
     }
 
     int i;
-    if(valid==1) { //password is going to be changed (.passlocation file
+    if(valid==1) { //password is going to be changed .passlocation file
         char file[20] = ".pass";
         strcat(file, argv[1]);
         if(foundtwo==1){//if the location already had a password, reset it
             unlink(file);//reset the file
         }
-        fd = open(file, O_CREAT | O_WRONLY, 0666) //create .passlocation file
+        fd = open(file, O_CREAT | O_WRONLY, 0666); //create .passlocation file
         write(fd, argv[2], strlen(argv[2])); //write the specified password on it
         close(fd);
     }
