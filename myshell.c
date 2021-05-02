@@ -141,7 +141,7 @@ void change_permissions (char *cwd) {
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(brush, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(setpass, S_IRUSR|S_IRGRP|S_IROTH);
-	} else if (strcmp(dirpath,"/stairs")==0 ||strcmp(dirpath,"/corridor")==0 ||strcmp(dirpath,"/bedroom")==0 || strcmp(dirpath,"/exitDoor")==0) {
+	} else if (strcmp(dirpath,"/stairs")==0 ||strcmp(dirpath,"/corridor")==0 || strcmp(dirpath,"/exitDoor")==0) {
 		chmod(touch, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
@@ -151,6 +151,18 @@ void change_permissions (char *cwd) {
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(brush, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(setpass, S_IRUSR|S_IRGRP|S_IROTH);
+	} else if (strcmp(dirpath,"/bedroom")==0) {
+		chmod(touch, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(man, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(help, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(brush, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(setpass, S_IRUSR|S_IRGRP|S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 	} else if (strcmp(dirpath,"/wardrobe")==0) {
 		chmod(touch, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
@@ -161,6 +173,7 @@ void change_permissions (char *cwd) {
 		chmod(rm, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(brush, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(setpass, S_IRUSR|S_IRGRP|S_IROTH);
 	} else if (strcmp(dirpath,"/library")==0) {
 		chmod(touch, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
@@ -171,6 +184,7 @@ void change_permissions (char *cwd) {
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(brush, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(setpass, S_IRUSR|S_IRGRP|S_IROTH);
 	} else if (strcmp(dirpath,"/kitchen")==0) {
 		chmod(touch, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(mv, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
@@ -181,6 +195,7 @@ void change_permissions (char *cwd) {
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cook, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(brush, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(setpass, S_IRUSR|S_IRGRP|S_IROTH);
 	} else if (strcmp(dirpath, "/oven")==0) {
 		chmod(touch, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(mv, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
@@ -191,6 +206,7 @@ void change_permissions (char *cwd) {
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(brush, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(setpass, S_IRUSR|S_IRGRP|S_IROTH);
 	} else if (strcmp(dirpath,"/bath")==0) {
 		chmod(touch, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
@@ -201,6 +217,7 @@ void change_permissions (char *cwd) {
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(brush, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(setpass, S_IRUSR|S_IRGRP|S_IROTH);
 	} 
 }
 
