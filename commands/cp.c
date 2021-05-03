@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
         
         //To ensure that the command follows the cp structure.
         if (argc !=3)  {
-                write(2, "Usage: cp object_name copy_name\n", 24);
+                write(2, "Usage: cp object_name copy_name\n", strlen("Usage: cp object_name copy_name\n"));
                       exit(1);
         }
         //Copy the file.
