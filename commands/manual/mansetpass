@@ -1,0 +1,4 @@
+setpass location password
+It sets the specified password to the specified location.
+If the location already has a password, it must be written before
+changing it.
