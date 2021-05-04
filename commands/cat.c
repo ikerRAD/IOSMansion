@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
    } else if (argc == 2) {
        if(strcmp(".tutorial",argv[1])==0){
             write(1, tuto, strlen(tuto));
-       }else {
+       }else {//omment
            //to ensure the file name is not a directory
            DIR *isdir = opendir(argv[1]);
            if (isdir != NULL) {
