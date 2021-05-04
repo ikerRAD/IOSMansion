@@ -395,7 +395,7 @@ int execute(int argc, char *argv[], char *cwd)
 
 main ()
 {
-   char * Prompt = "myShell0> ";
+   char * Prompt = "\nMansionShell> ";
    int eof= 0;
    int argc;
    char *args[MAXARGS];
