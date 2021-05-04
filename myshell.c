@@ -299,7 +299,11 @@ int execute(int argc, char *argv[], char *cwd)
 	}
 	if (argc!=2) {
 		write(2, "Usage: cd new_location\n", strlen("Usage: cd new_location\n"));
-	} else {
+	} 
+	else if(strstr(argv[1],"/"))
+	write(2,"Dont run too much\n",strlen("Dont run too much\n"));
+	
+else {
 		int valid=0;
 		int found=0;
 		//search for .pass[location] file
