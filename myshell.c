@@ -396,6 +396,7 @@ int execute(int argc, char *argv[], char *cwd)
 
 main ()
 {
+
    char * Prompt = "MansionShell> ";
    int eof= 0;
    int argc;
