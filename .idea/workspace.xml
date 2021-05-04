@@ -6,8 +6,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="138ee9fe-3f3b-4182-a0f7-99a790529685" name="Default Changelist" comment="tutorial patch">
+    <list default="true" id="138ee9fe-3f3b-4182-a0f7-99a790529685" name="Default Changelist" comment="rand">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commands/cat.c" beforeDir="false" afterPath="$PROJECT_DIR$/commands/cat.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myshell.c" beforeDir="false" afterPath="$PROJECT_DIR$/myshell.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +49,7 @@
       <updated>1619799155812</updated>
       <workItem from="1619799160378" duration="14437000" />
       <workItem from="1620050306007" duration="1256000" />
+      <workItem from="1620118301322" duration="970000" />
     </task>
     <task id="LOCAL-00001" summary="password system">
       <created>1619803378950</created>
@@ -153,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620050932726</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="rand">
+      <created>1620118331186</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1620118331186</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +186,7 @@
     <MESSAGE value="setpwd command" />
     <MESSAGE value="setpwd command finish" />
     <MESSAGE value="tutorial patch" />
-    <option name="LAST_COMMIT_MESSAGE" value="tutorial patch" />
+    <MESSAGE value="rand" />
+    <option name="LAST_COMMIT_MESSAGE" value="rand" />
   </component>
 </project>

@@ -415,6 +415,7 @@ main ()
    //Execute tutorial
    args[0] = "cat";
    args[1] = ".tutorial";
+   args[2]=NULL;
    execute(2,args, cwd);
 
    while (1) {
