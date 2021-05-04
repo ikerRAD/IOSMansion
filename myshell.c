@@ -346,6 +346,7 @@ int execute(int argc, char *argv[], char *cwd)
 		      		if ((strcmp(strrchr(current_path, '/'), "/nowhere")==0) && nowhere){
 		      			argv[0] = "cat";
                      			argv[1] = ".tutorial";
+					argv[2]=NULL;
                       			nowhere = false;	
                      			execute(2, argv, cwd);
 	       	       		}
@@ -395,7 +396,7 @@ int execute(int argc, char *argv[], char *cwd)
 
 main ()
 {
-   char * Prompt = "myShell0> ";
+   char * Prompt = "MansionShell> ";
    int eof= 0;
    int argc;
    char *args[MAXARGS];
