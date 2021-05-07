@@ -383,8 +383,8 @@ else {
                 pipe(fd1);
                 pid = fork();
                 if(pid == 0){
-                    close(pipefd[READ_END]);
-                    dup2(pipefd[WRITE_END], STDOUT_FILENO);
+                    close(fd1[READ_END]);
+                    dup2(fd1[WRITE_END], STDOUT_FILENO);
                     system("ls -l");
                     exit(0);
                 }
@@ -394,8 +394,8 @@ else {
 
 				    pid=fork();
                     if(pid== 0){
-                        close(pipefd[WRITE_END]);
-                        dup2(pipefd[READ_END], STDOUT_FILENO);
+                        close(fd1[WRITE_END]);
+                        dup2(fd1[READ_END], STDOUT_FILENO);
 
                         strcat(grep,argv[2]);
 
