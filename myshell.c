@@ -11,6 +11,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include<sys/wait.h>
 #include <fcntl.h>
 #include <stdbool.h>
 #include <termios.h>
@@ -19,6 +20,8 @@
 #define error(a) {perror(a); exit(1);};
 #define MAXLINE 200
 #define MAXARGS 20
+#define READ_END 0
+#define WRITE_END 1
 
 bool nowhere = true;
 
@@ -366,28 +369,84 @@ else {
 
 	}
     } else {
-        int proccess = fork();
-        if(proccess==0){
-	   
-	   strcat(cwd,"/commands/");
-	   strcat(cwd, argv[0]);
-           if(execvp(cwd, argv)<0){
-		   switch(errno) {
-			   case EACCES:
-				   write(2, "That magical word can't be used in your current location\n", strlen("That magical word can't be used in your current location\n"));
-				   break;
-			   case ENOENT:
-				   write(2, "That magical word doesn't exist\n", strlen("That magical word doesn't exist\n"));
-				   break;
-			   default:
-				   write(2, "An error has occurred\n", strlen("An error has occurred\n"));
-				   break;
-		   }
-           exit(1);
-           }
-        } else if (proccess > 0)
-            wait(&status);
+
+	//pipe ls-f
+	if(argc>1)
+        if(strcmp(argv[0], "ls")==0 && strcmp(argv[1], "-f")==0){
+
+            if(argc!=3){
+                write(2,"the usage is ls -f [filter_name]\n",strlen("the usage is ls -f [filter_name]\n"));
+                return;
+            }
+            char grep[20]="grep ";
+
+
+            int STD_OUT = dup(1);
+            int STD_IN =dup(0);
+
+            int fd1[2];
+            int pid;
+            pipe(fd1);
+            pid = fork();
+            if(pid == 0){
+                close(fd1[READ_END]);
+                dup2(fd1[WRITE_END], STDOUT_FILENO);
+                system("ls");
+                exit(0);
+            }
+            else{
+
+                //close(fd1[WRITE_END]);
+
+                pid=fork();
+                if(pid== 0){
+                    close(fd1[WRITE_END]);
+                    dup2(fd1[READ_END], STDIN_FILENO);
+                    //write(1,"\n",1);
+                    strcat(grep,argv[2]);
+
+                    system(grep);
+                    write(1,"\n",1);
+                    exit(0);
+                }
+                //wait(&status);
+			}
+			wait(&status);
+
+
+			dup2(STD_OUT, 1);
+            close(STD_OUT);
+            dup2(STD_IN, 0);
+            close(STD_IN);
+
+            return;
+	}
+
+            int proccess = fork();
+            if (proccess == 0) {
+
+                strcat(cwd, "/commands/");
+                strcat(cwd, argv[0]);
+                if (execvp(cwd, argv) < 0) {
+                    switch (errno) {
+                        case EACCES:
+                            write(2, "That magical word can't be used in your current location\n",
+                                  strlen("That magical word can't be used in your current location\n"));
+                            break;
+                        case ENOENT:
+                            write(2, "That magical word doesn't exist\n", strlen("That magical word doesn't exist\n"));
+                            break;
+                        default:
+                            write(2, "An error has occurred\n", strlen("An error has occurred\n"));
+                            break;
+                    }
+                    exit(1);
+                }
+            } else if (proccess > 0)
+                wait(&status);
+
     }
+
 }
 
 
