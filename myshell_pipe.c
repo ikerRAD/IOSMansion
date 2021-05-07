@@ -371,7 +371,13 @@ else {
     } else {
 
 	//pipe ls-f
+	if(argc>1)
         if(strcmp(argv[0], "ls")==0 && strcmp(argv[1], "-f")==0){
+
+            if(argc!=3){
+                write(2,"the usage is ls -f filter_name",strlen("the usage is ls -f filter_name"));
+                return;
+            }
 			    char grep[20]="grep ";
 
 
@@ -385,7 +391,7 @@ else {
                 if(pid == 0){
                     close(fd1[READ_END]);
                     dup2(fd1[WRITE_END], STDOUT_FILENO);
-                    system("ls -l");
+                    system("ls");
                     exit(0);
                 }
                 else{
@@ -411,7 +417,8 @@ else {
             dup2(STD_IN, 0);
             close(STD_IN);
 
-	}else {
+            return;
+	}
 
             int proccess = fork();
             if (proccess == 0) {
@@ -435,7 +442,7 @@ else {
                 }
             } else if (proccess > 0)
                 wait(&status);
-        }
+
     }
 
 }
