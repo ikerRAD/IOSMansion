@@ -402,10 +402,11 @@ else {
                 if(pid== 0){
                     close(fd1[WRITE_END]);
                     dup2(fd1[READ_END], STDIN_FILENO);
-                    write(1,"\n",1);
+                    //write(1,"\n",1);
                     strcat(grep,argv[2]);
 
                     system(grep);
+                    write(1,"\n",1);
                     exit(0);
                 }
                 //wait(&status);
