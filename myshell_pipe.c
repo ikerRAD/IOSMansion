@@ -397,7 +397,7 @@ else {
             else{
 
                 //close(fd1[WRITE_END]);
-                write(1,"\n",1);
+
                 pid=fork();
                 if(pid== 0){
                     close(fd1[WRITE_END]);
