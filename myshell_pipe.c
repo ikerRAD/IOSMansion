@@ -406,7 +406,7 @@ else {
 					    //close(fd1[READ_END]);
 
                         execlp(newPath, argv[2]);
-                        exit(0)
+                        exit(0);
                     }
 			}
 			wait(&status);
