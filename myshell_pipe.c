@@ -375,10 +375,9 @@ else {
         if(strcmp(argv[0], "ls")==0 && strcmp(argv[1], "-f")==0){
 
             if(argc!=3){
-                write(2,"the usage is ls -f filter_name\n",strlen("the usage is ls -f filter_name\n"));
+                write(2,"the usage is ls -f [filter_name]\n",strlen("the usage is ls -f filter_name\n"));
                 return;
             }
-                write(1,"\n",strlen("\n"));
 			    char grep[20]="grep ";
 
 
@@ -452,7 +451,7 @@ else {
 main ()
 {
 
-   char * Prompt = "MansionShell> ";
+   char * Prompt = "MansionShell>\n";
    int eof= 0;
    int argc;
    char *args[MAXARGS];
