@@ -397,14 +397,14 @@ else {
                 else{
 
 				    //close(fd1[WRITE_END]);
-
+                    write(1,"\n",1);
 				    pid=fork();
                     if(pid== 0){
                         close(fd1[WRITE_END]);
                         dup2(fd1[READ_END], STDIN_FILENO);
 
                         strcat(grep,argv[2]);
-                        write(1,"\n",1);
+
                         system(grep);
                         exit(0);
                     }
