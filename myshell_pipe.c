@@ -408,7 +408,7 @@ else {
                     system(grep);
                     exit(0);
                 }
-                wait(&status);
+                //wait(&status);
 			}
 			wait(&status);
 
