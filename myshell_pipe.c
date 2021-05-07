@@ -371,66 +371,80 @@ else {
     } else {
 
 	//pipe ls-f
-        if(strcmp(argv[0], "ls")==0){
-                if(strcmp(argv[1], "-f")==0){
-			char newPath[PATH_MAX];
-			strcpy(newPath, cwd);
-                        int fd1[2];
-			int pid;
-                        pipe(fd1);
-                        pid = fork();
-                        if(pid == 0){
-                                strcat(cwd,"/commands/");
-                                strcat(cwd, argv[0]);
+        if(strcmp(argv[0], "ls")==0 && strcmp(argv[1], "-f")==0){
+			    char newPath[PATH_MAX];
+			    strcpy(newPath, cwd);
 
-				close(fd1[READ_END]);
-				dup2(fd1[WRITE_END], STDOUT_FILENO);
-				close(fd1[WRITE_END]);
+                int STD_OUT = dup(1);
+                int STD_IN =dup(0);
 
-                                execlp(cwd, argv[0]);
-                        }
-                        else{
-                                
-				close(fd1[WRITE_END]);
+                int fd1[2];
+			    int pid;
+                pipe(fd1);
+                pid = fork();
+                if(pid == 0){
+                     strcat(cwd,"/commands/");
+                     strcat(cwd, argv[0]);
 
-				pid=fork();
-                                if(pid== 0){
-                                        strcat(newPath,"/commands/grep");
+				    close(fd1[READ_END]);
+				    dup2(fd1[WRITE_END], STDOUT_FILENO);
+				    //close(fd1[WRITE_END]);
 
-					dup2(fd1[READ_END], STDOUT_FILENO);
-					close(fd1[READ_END]);
+                    execlp(cwd, argv[0]);
+                    exit(0);
+                }
+                else{
 
-                                        execlp(newPath, argv[2]);
-                              }
+				    //close(fd1[WRITE_END]);
+
+				    pid=fork();
+                    if(pid== 0){
+                        close(fd1[WRITE_END]);
+                        strcat(newPath,"/commands/grep");
+
+					    dup2(fd1[READ_END], STDOUT_FILENO);
+					    //close(fd1[READ_END]);
+
+                        execlp(newPath, argv[2]);
+                        exit(0)
+                    }
 			}
 			wait(&status);
 			wait(&status);
-		}
-		else return;
-	}
-	
-        int proccess = fork();
-        if(proccess==0){
-	   
-	   strcat(cwd,"/commands/");
-	   strcat(cwd, argv[0]);
-           if(execvp(cwd, argv)<0){
-		   switch(errno) {
-			   case EACCES:
-				   write(2, "That magical word can't be used in your current location\n", strlen("That magical word can't be used in your current location\n"));
-				   break;
-			   case ENOENT:
-				   write(2, "That magical word doesn't exist\n", strlen("That magical word doesn't exist\n"));
-				   break;
-			   default:
-				   write(2, "An error has occurred\n", strlen("An error has occurred\n"));
-				   break;
-		   }
-           exit(1);
-           }
-        } else if (proccess > 0)
-            wait(&status);
+
+                dup2(STD_OUT, 1);
+                close(STD_OUT);
+                dup2(STD_IN, 0);
+                close(STD_IN);
+
+
+	}else {
+
+            int proccess = fork();
+            if (proccess == 0) {
+
+                strcat(cwd, "/commands/");
+                strcat(cwd, argv[0]);
+                if (execvp(cwd, argv) < 0) {
+                    switch (errno) {
+                        case EACCES:
+                            write(2, "That magical word can't be used in your current location\n",
+                                  strlen("That magical word can't be used in your current location\n"));
+                            break;
+                        case ENOENT:
+                            write(2, "That magical word doesn't exist\n", strlen("That magical word doesn't exist\n"));
+                            break;
+                        default:
+                            write(2, "An error has occurred\n", strlen("An error has occurred\n"));
+                            break;
+                    }
+                    exit(1);
+                }
+            } else if (proccess > 0)
+                wait(&status);
+        }
     }
+
 }
 
 

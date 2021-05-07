@@ -6,10 +6,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="138ee9fe-3f3b-4182-a0f7-99a790529685" name="Default Changelist" comment="rand">
+    <list default="true" id="138ee9fe-3f3b-4182-a0f7-99a790529685" name="Default Changelist" comment="enter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commands/cat.c" beforeDir="false" afterPath="$PROJECT_DIR$/commands/cat.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myshell.c" beforeDir="false" afterPath="$PROJECT_DIR$/myshell.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myshell_pipe.c" beforeDir="false" afterPath="$PROJECT_DIR$/myshell_pipe.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +25,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="1rtd7WM1W6WW4YgjT85YgNxxkDB" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -38,6 +38,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/myshell_pipe.c" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/myshell_pipe.c" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -49,7 +51,8 @@
       <updated>1619799155812</updated>
       <workItem from="1619799160378" duration="14437000" />
       <workItem from="1620050306007" duration="1256000" />
-      <workItem from="1620118301322" duration="970000" />
+      <workItem from="1620118301322" duration="2429000" />
+      <workItem from="1620401322728" duration="1796000" />
     </task>
     <task id="LOCAL-00001" summary="password system">
       <created>1619803378950</created>
@@ -163,7 +166,21 @@
       <option name="project" value="LOCAL" />
       <updated>1620118331186</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="fix">
+      <created>1620120016236</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1620120016236</updated>
+    </task>
+    <task id="LOCAL-00018" summary="enter">
+      <created>1620120211184</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1620120211184</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,6 +204,8 @@
     <MESSAGE value="setpwd command finish" />
     <MESSAGE value="tutorial patch" />
     <MESSAGE value="rand" />
-    <option name="LAST_COMMIT_MESSAGE" value="rand" />
+    <MESSAGE value="fix" />
+    <MESSAGE value="enter" />
+    <option name="LAST_COMMIT_MESSAGE" value="enter" />
   </component>
 </project>
