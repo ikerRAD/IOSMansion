@@ -404,7 +404,7 @@ else {
                         dup2(fd1[READ_END], STDIN_FILENO);
 
                         strcat(grep,argv[2]);
-
+                        write(1,"\n",1);
                         system(grep);
                         exit(0);
                     }
@@ -451,7 +451,7 @@ else {
 main ()
 {
 
-   char * Prompt = "MansionShell>\n";
+   char * Prompt = "MansionShell> ";
    int eof= 0;
    int argc;
    char *args[MAXARGS];
