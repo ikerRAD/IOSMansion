@@ -373,7 +373,7 @@ else {
 	//pipe ls-f
         if(strcmp(argv[0], "ls")==0){
                 if(strcmp(argv[1], "-f")==0){
-			char *newPath = "";
+			char newPath[PATH_MAX];
 			strcpy(newPath, cwd);
                         int fd1[2];
 			int pid;
