@@ -372,8 +372,8 @@ else {
 
 	//pipe ls-f
         if(strcmp(argv[0], "ls")==0 && strcmp(argv[1], "-f")==0){
-			    char newPath[PATH_MAX];
-			    strcpy(newPath, cwd);
+			    char grep[20]="grep ";
+
 
                 int STD_OUT = dup(1);
                 int STD_IN =dup(0);
@@ -383,14 +383,9 @@ else {
                 pipe(fd1);
                 pid = fork();
                 if(pid == 0){
-                     strcat(cwd,"/commands/");
-                     strcat(cwd, argv[0]);
-
-				    close(fd1[READ_END]);
-				    dup2(fd1[WRITE_END], STDOUT_FILENO);
-				    //close(fd1[WRITE_END]);
-
-                    execlp(cwd, argv[0]);
+                    close(pipefd[READ_END]);
+                    dup2(pipefd[WRITE_END], STDOUT_FILENO);
+                    system("ls -l");
                     exit(0);
                 }
                 else{
@@ -399,24 +394,22 @@ else {
 
 				    pid=fork();
                     if(pid== 0){
-                        close(fd1[WRITE_END]);
-                        strcat(newPath,"/commands/grep");
+                        close(pipefd[WRITE_END]);
+                        dup2(pipefd[READ_END], STDOUT_FILENO);
 
-					    dup2(fd1[READ_END], STDOUT_FILENO);
-					    //close(fd1[READ_END]);
+                        strcat(grep,argv[2]);
 
-                        execlp(newPath, argv[2]);
+                        system(grep);
                         exit(0);
                     }
 			}
-			wait(&status);
-			wait(&status);
+			//wait(&status);
+			//wait(&status);
 
-                dup2(STD_OUT, 1);
-                close(STD_OUT);
-                dup2(STD_IN, 0);
-                close(STD_IN);
-
+			dup2(STD_OUT, 1);
+            close(STD_OUT);
+            dup2(STD_IN, 0);
+            close(STD_IN);
 
 	}else {
 
