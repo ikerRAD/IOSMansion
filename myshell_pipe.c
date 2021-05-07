@@ -409,8 +409,8 @@ else {
                         exit(0);
                     }
 			}
-			//wait(&status);
-			//wait(&status);
+			wait(&status);
+			wait(&status);
 
 			dup2(STD_OUT, 1);
             close(STD_OUT);
