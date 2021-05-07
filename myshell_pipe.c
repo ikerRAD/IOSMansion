@@ -401,16 +401,16 @@ else {
 				    pid=fork();
                     if(pid== 0){
                         close(fd1[WRITE_END]);
-                        dup2(fd1[READ_END], STDOUT_FILENO);
+                        dup2(fd1[READ_END], STDIN_FILENO);
 
                         strcat(grep,argv[2]);
 
-                        system("sort");
+                        system(grep);
                         exit(0);
                     }
 			}
-			wait(&status);
-			wait(&status);
+			//wait(&status);
+			//wait(&status);
 
 			dup2(STD_OUT, 1);
             close(STD_OUT);
