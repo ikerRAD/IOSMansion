@@ -375,42 +375,43 @@ else {
         if(strcmp(argv[0], "ls")==0 && strcmp(argv[1], "-f")==0){
 
             if(argc!=3){
-                write(2,"the usage is ls -f [filter_name]\n",strlen("the usage is ls -f filter_name\n"));
+                write(2,"the usage is ls -f [filter_name]\n",strlen("the usage is ls -f [filter_name]\n"));
                 return;
             }
-			    char grep[20]="grep ";
+            char grep[20]="grep ";
 
 
-                int STD_OUT = dup(1);
-                int STD_IN =dup(0);
+            int STD_OUT = dup(1);
+            int STD_IN =dup(0);
 
-                int fd1[2];
-			    int pid;
-                pipe(fd1);
-                pid = fork();
-                if(pid == 0){
-                    close(fd1[READ_END]);
-                    dup2(fd1[WRITE_END], STDOUT_FILENO);
-                    system("ls");
+            int fd1[2];
+            int pid;
+            pipe(fd1);
+            pid = fork();
+            if(pid == 0){
+                close(fd1[READ_END]);
+                dup2(fd1[WRITE_END], STDOUT_FILENO);
+                system("ls");
+                exit(0);
+            }
+            else{
+
+                //close(fd1[WRITE_END]);
+                write(1,"\n",1);
+                pid=fork();
+                if(pid== 0){
+                    close(fd1[WRITE_END]);
+                    dup2(fd1[READ_END], STDIN_FILENO);
+
+                    strcat(grep,argv[2]);
+
+                    system(grep);
                     exit(0);
                 }
-                else{
-
-				    //close(fd1[WRITE_END]);
-                    write(1,"\n",1);
-				    pid=fork();
-                    if(pid== 0){
-                        close(fd1[WRITE_END]);
-                        dup2(fd1[READ_END], STDIN_FILENO);
-
-                        strcat(grep,argv[2]);
-
-                        system(grep);
-                        exit(0);
-                    }
+                wait(&status);
 			}
-			//wait(&status);
-			//wait(&status);
+			wait(&status);
+
 
 			dup2(STD_OUT, 1);
             close(STD_OUT);
