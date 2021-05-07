@@ -405,7 +405,7 @@ else {
 
                         strcat(grep,argv[2]);
 
-                        system(grep);
+                        system("sort");
                         exit(0);
                     }
 			}
