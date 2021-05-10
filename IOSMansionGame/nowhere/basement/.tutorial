@@ -17,6 +17,8 @@ Those are called permissions, they define the rules here!
 Apart from the permissions you should see a d in the leftmost part of some of the components. 
 Those d's mean that the name related to it is a new location. 
 If a name is missing that d, it means that it is an object.
+If you want to search for a specific object or location in your current location, use ls -f wordtofind
+This will print the locations or objects that match the word you have specified.
 
 cat
 This magical word can do two different things:
