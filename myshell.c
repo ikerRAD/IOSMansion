@@ -137,7 +137,7 @@ void change_permissions (char *cwd) {
 		chmod(touch, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
-		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH|S_IXUSR|S_IXGRP|S_IXOTH);
+		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(man, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(help, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
@@ -148,6 +148,7 @@ void change_permissions (char *cwd) {
 		chmod(touch, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(man, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
@@ -158,6 +159,7 @@ void change_permissions (char *cwd) {
 		chmod(touch, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(man, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
@@ -168,6 +170,7 @@ void change_permissions (char *cwd) {
 		chmod(touch, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(man, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(rm, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
@@ -178,6 +181,7 @@ void change_permissions (char *cwd) {
 		chmod(touch, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH|S_IXUSR|S_IXGRP|S_IXOTH);
 		chmod(man, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
@@ -188,6 +192,7 @@ void change_permissions (char *cwd) {
 		chmod(touch, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(mv, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(man, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
@@ -198,6 +203,7 @@ void change_permissions (char *cwd) {
 		chmod(touch, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(mv, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
+		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(man, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
@@ -208,6 +214,7 @@ void change_permissions (char *cwd) {
 		chmod(touch, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cp, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
+		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(man, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
