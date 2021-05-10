@@ -287,6 +287,7 @@ int execute(int argc, char *argv[], char *cwd)
         getcwd(current_path, sizeof(current_path));
 	char *dirfinal;
 	dirfinal= strrchr(current_path, '/');
+	//error management
 	if(strcmp(dirfinal, "/nowhere")==0){
 		if(strcmp(argv[1], "..")==0){
 			write(2, "You can't go out of nowhere!\n", strlen("You can't go out of nowhere!\n"));
@@ -295,87 +296,87 @@ int execute(int argc, char *argv[], char *cwd)
 	}
 	if (argc!=2) {
 		write(2, "Usage: cd new_location\n", strlen("Usage: cd new_location\n"));
+		return;
 	} 
-	else if(strstr(argv[1],"/"))
-	write(2,"Dont run too much\n",strlen("Dont run too much\n"));
-	
-else {
-		int valid=0;
-		int found=0;
-		//search for .pass[location] file
-		struct dirent *d;
- 		struct stat fileStat;
-		char path[10] = "./";
-		strcat(path,argv[1]);  		
-
-  		DIR *direc=opendir(".");
-  
-  		char *str;
-  		
-		char stri[20]=".pass";
-		strcat(stri,argv[1]);
-  		while((d=readdir(direc))!=NULL && found!=1){
-    			str=d->d_name;
-    			if(strcmp(str,stri)==0) found=1;
-  		}
-  		closedir(direc);
-		//process password if needed
-		if(found==1){
-		    write(1,"introduce password:\n",strlen("introduce password:\n"));
-			valid=processPassword(stri);
-		}else valid=1;
-		
-		if(valid==1){
-        		
-        		if (chdir(path)==-1) {
-				switch (errno) {
-					case ENOENT:
-						write(2, "The new location doesn't exist\n", strlen("The new location doesn't exist\n"));
-						break;
-					case ENOTDIR:
-						write(2, "A component of the path isn't a location\n", strlen("A component of the path isn't a location\n"));
-						break;
-					default:
-						write(2, "An error has occurred\n", strlen("An error has occurred\n"));
-						break;
-				}
-				return;		
-			}
-			else {
-                     		getcwd(current_path, sizeof(current_path));
-		      		if ((strcmp(strrchr(current_path, '/'), "/nowhere")==0) && nowhere){
-		      			argv[0] = "cat";
-                     			argv[1] = ".tutorial";
-					argv[2]=NULL;
-                      			nowhere = false;	
-                     			execute(2, argv, cwd);
-	       	       		}
-                	}
-			int proccess = fork();
-        		if(proccess==0){
-				strcpy(copycwd, cwd);
-				change_permissions(copycwd);
-           			strcat(cwd,"/commands/");
-           			strcat(cwd, "pwd");
- 	   			if(execlp(cwd, "pwd", (char *)NULL)<0){
-           				write(2, "An error has occurred\n", strlen("An error has occurred\n"));
-           				return;
-           			}
-			} else if (proccess > 0)
-           		 	wait(&status);
-		}else{
-			return;//PROVISIONAL IF PASSWORD FAILED
-		}
-
+	if(strstr(argv[1],"/")) {
+		write(2,"Dont run too much\n",strlen("Dont run too much\n"));
+		return;
 	}
+	
+	int valid=0;
+	int found=0;
+	//search for .pass[location] file
+	struct dirent *d;
+ 	struct stat fileStat;
+	char path[10] = "./";
+	strcat(path,argv[1]);  		
+
+  	DIR *direc=opendir(".");
+  
+  	char *str;
+  		
+	char stri[20]=".pass";
+	strcat(stri,argv[1]);
+  	while((d=readdir(direc))!=NULL && found!=1){
+    		str=d->d_name;
+    		if(strcmp(str,stri)==0) found=1;
+  	}
+  	closedir(direc);
+	//process password if needed
+	if(found==1){
+		write(1,"introduce password:\n",strlen("introduce password:\n"));
+		valid=processPassword(stri);
+	}else valid=1;
+		
+	if(valid==1){
+        	if (chdir(path)==-1) {
+			switch (errno) {
+				case ENOENT:
+					write(2, "The new location doesn't exist\n", strlen("The new location doesn't exist\n"));
+					break;
+				case ENOTDIR:
+					write(2, "A component of the path isn't a location\n", strlen("A component of the path isn't a location\n"));
+					break;
+				default:
+					write(2, "An error has occurred\n", strlen("An error has occurred\n"));
+					break;
+			}
+			return;		
+		} else {
+			//if player is in nowhere, print the tutorial
+                     	getcwd(current_path, sizeof(current_path));
+		      	if ((strcmp(strrchr(current_path, '/'), "/nowhere")==0) && nowhere){
+		      		argv[0] = "cat";
+                     		argv[1] = ".tutorial";
+				argv[2]=NULL;
+                      		nowhere = false;	
+                     		execute(2, argv, cwd);
+	       	       	}
+                }
+		int proccess = fork();
+        	if(proccess==0){ //change permissions and print pwd
+			strcpy(copycwd, cwd);
+			change_permissions(copycwd);
+           		strcat(cwd,"/commands/");
+           		strcat(cwd, "pwd");
+ 	   		if(execlp(cwd, "pwd", (char *)NULL)<0){
+           			write(2, "An error has occurred\n", strlen("An error has occurred\n"));
+           			return;
+           		}
+		} else if (proccess > 0)
+           		 wait(&status);
+	}else{ //password was not valid
+		return;
+	}
+	//end of cd
     } else {
 
-	//pipe ls-f
+	//pipe ls -f
 	if(argc>1)
         if(strcmp(argv[0], "ls")==0 && strcmp(argv[1], "-f")==0){
 
             if(argc!=3){
-                write(2,"the usage is ls -f [filter_name]\n",strlen("the usage is ls -f [filter_name]\n"));
+                write(2,"the usage is ls -f filter_name\n",strlen("the usage is ls -f filter_name\n"));
                 return;
             }
             char grep[20]="grep ";
@@ -481,12 +482,18 @@ main ()
       if (read_args(&argc, args, MAXARGS, &eof) && argc > 0) {
          signal(2,SIG_IGN);
 	    if(strcmp(args[0], "man")==0){
-		    strcpy(manual_path, manual_path_original);
-		    strcat(manual_path, args[1]);
-		    strcpy(args[0], "cat");
-		    strcpy(args[1], manual_path);
+		    if (argc!=2) {
+			    write(1, "Usage: man magical_word\n", strlen("Usage: man magical_word\n"));
+		    } else {
+		    	strcpy(manual_path, manual_path_original);
+		    	strcat(manual_path, args[1]);
+		    	strcpy(args[0], "cat");
+		    	strcpy(args[1], manual_path);
+			execute(argc, args, cwd);
+		    }
+	    } else {
+         	execute(argc, args, cwd);
 	    }
-         execute(argc, args, cwd);
          signal(2,SIG_DFL);
       }
       if (eof) exit(0);
