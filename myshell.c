@@ -491,6 +491,7 @@ main ()
 	    if(strcmp(args[0], "man")==0){
 		    if (argc!=2) {
 			    write(1, "Usage: man magical_word\n", strlen("Usage: man magical_word\n"));
+		   	    execl("./myshell",NULL);
 		    } else {
 		    	strcpy(manual_path, manual_path_original);
 		    	strcat(manual_path, args[1]);
