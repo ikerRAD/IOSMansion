@@ -1,5 +1,5 @@
 cd
-ls [-l]
+ls [OPTIONS]
 pwd
 cat
 man
