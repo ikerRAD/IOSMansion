@@ -1,3 +1,5 @@
-ls [-l]
+ls [OPTIONS]
 ls shows the objects and locations that are in the current location.
-ls -l also displays the permissions of each entry.
+OPTION
+ls -l ->also displays the permissions of each entry.
+ls -f filter ->filters the entries of the location according to the specified word
