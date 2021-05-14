@@ -65,12 +65,12 @@ int main(int argc, const char *argv[]){
 		if(strcmp(argv[1], "-l")==0){
 			l = 1;	
 		} else {
-			write(2, "Usage: ls [-l]\n", strlen("Usage: ls [-l]\n"));
+			write(2, "Usage: ls [OPTIONS]\n", strlen("Usage: ls [OPTIONS]\n"));
 			exit(1);
 		}
 	}
 	if(argc > 2){
-		write(2, "Usage: ls [-l]\n", strlen("Usage: ls [-l]\n"));
+		write(2, "Usage: ls [OPTIONS]\n", strlen("Usage: ls [OPTIONS]\n"));
 		exit(1);
 	} 
 	//The structure is correct, call the program
