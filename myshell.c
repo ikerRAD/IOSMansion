@@ -100,7 +100,6 @@ void change_permissions (char *cwd) {
 	char mv[PATH_MAX];
 	char cp[PATH_MAX];
 	char grep[PATH_MAX];
-	char man[PATH_MAX];
 	char help[PATH_MAX];
 	char rm[PATH_MAX];
 	char cook[PATH_MAX];
@@ -120,8 +119,6 @@ void change_permissions (char *cwd) {
 	strcat(cp, "cp");
 	strcpy(grep, cwd);
 	strcat(grep, "grep");
-	strcpy(man, cwd);
-	strcat(man, "man");
 	strcpy(help, cwd);
 	strcat(help, "help");
 	strcpy(rm, cwd);
@@ -138,7 +135,6 @@ void change_permissions (char *cwd) {
 		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
-		chmod(man, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(help, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
@@ -149,7 +145,6 @@ void change_permissions (char *cwd) {
 		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
-		chmod(man, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
@@ -160,7 +155,6 @@ void change_permissions (char *cwd) {
 		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
-		chmod(man, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
@@ -171,7 +165,6 @@ void change_permissions (char *cwd) {
 		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
-		chmod(man, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(rm, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
@@ -182,7 +175,6 @@ void change_permissions (char *cwd) {
 		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH|S_IXUSR|S_IXGRP|S_IXOTH);
-		chmod(man, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
@@ -193,7 +185,6 @@ void change_permissions (char *cwd) {
 		chmod(mv, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
-		chmod(man, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cook, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
@@ -204,7 +195,6 @@ void change_permissions (char *cwd) {
 		chmod(mv, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(cp, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
-		chmod(man, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
@@ -215,7 +205,6 @@ void change_permissions (char *cwd) {
 		chmod(mv, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cp, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(grep, S_IRUSR|S_IRGRP|S_IROTH);
-		chmod(man, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(help, S_IRUSR | S_IRGRP | S_IROTH| S_IXUSR |S_IXGRP  | S_IXOTH);
 		chmod(rm, S_IRUSR|S_IRGRP|S_IROTH);
 		chmod(cook, S_IRUSR|S_IRGRP|S_IROTH);
@@ -460,7 +449,7 @@ int execute(int argc, char *argv[], char *cwd)
 
 main ()
 {
-
+   char copycwd[100];
    char * Prompt = "MansionShell> ";
    int eof= 0;
    int argc;
@@ -477,7 +466,8 @@ main ()
    getcwd(start_path, sizeof(start_path));
    strcat(start_path, "/IOSMansionGame/nowhere/basement");
    chdir(start_path);
-   
+   strcpy(copycwd, cwd);
+   change_permissions(copycwd);   
    //Execute tutorial
    args[0] = "cat";
    args[1] = ".tutorial";
