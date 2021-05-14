@@ -79,7 +79,7 @@ void grep(char *argv[])
 
 int main(int argc,char *argv[]){
         if (argc!=3) {
-                write(2, "Usage: grep string_to_find object_name(if you what to find some consecutive words search them between double')\n", strlen("Usage: grep string_to_find object_name(if you what to find some consecutive words search them between double')\n"));
+                write(2, "Usage: grep string_to_find object_name(if you want to find some consecutive words search them between \"\")\n", strlen("Usage: grep string_to_find object_name(if you want to find some consecutive words search them between \"\")\n"));
                 exit(1);
         }
         grep(argv);
